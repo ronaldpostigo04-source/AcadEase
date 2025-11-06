@@ -3,27 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard - AcadEase</title>
+  <title>AcadEase Dashboard</title>
   <style>
-     body {
+    body {
       font-family: 'Segoe UI', sans-serif;
       background: #f0fdf4;
       margin: 0;
       padding: 0;
     }
 
-    header {
+    /* ===== NAVIGATION BAR ===== */
+    .navbar {
       background: #1b4332;
       color: #fff;
-      text-align: center;
-      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      position: relative;
     }
 
-    header h1 {
+    .navbar h1 {
+      font-size: 1.5rem;
       margin: 0;
-      font-size: 1.8rem;
     }
 
+    .menu-icon {
+      display: block;
+      cursor: pointer;
+      font-size: 24px;
+      user-select: none;
+    }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: #40916c;
+      border-radius: 10px;
+      width: 180px;
+      text-align: right;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 15px;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      background: #52b788;
+    }
+
+    .nav-links.active {
+      display: flex;
+    }
+
+    /* ===== CONTENT ===== */
     .container {
       max-width: 900px;
       margin: 40px auto;
@@ -64,11 +105,6 @@
       margin-bottom: 10px;
     }
 
-    .card p {
-      font-size: 0.9rem;
-      color: #333;
-    }
-
     footer {
       text-align: center;
       margin-top: 30px;
@@ -90,48 +126,73 @@
     .logout:hover {
       background: #40916c;
     }
+
+    @media (min-width: 700px) {
+      .nav-links {
+        display: flex !important;
+        position: static;
+        flex-direction: row;
+        background: none;
+        box-shadow: none;
+        width: auto;
+      }
+
+      .nav-links a {
+        padding: 0 15px;
+      }
+
+      .menu-icon {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to AcadEase Dashboard</h1>
-    <p>Empowering students through smart learning</p>
-  </header>
-
-  <div class="container">
-    <h2>Quick Access</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>📘 Courses</h3>
-        <p>View your enrolled subjects and lessons.</p>
-      </div>
-      <div class="card">
-        <h3>📝 Assignments</h3>
-        <p>Track your tasks and upcoming deadlines.</p>
-      </div>
-      <div class="card">
-        <h3>📅 Schedule</h3>
-        <p>Check your daily and weekly class schedule.</p>
-      </div>
-      <div class="card">
-        <h3>📊 Grades</h3>
-        <p>Monitor your academic performance easily.</p>
-      </div>
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <h1>AcadEase</h1>
+    <span class="menu-icon" onclick="toggleMenu()">☰</span>
+    <div class="nav-links" id="navLinks">
+      <a href="#courses">Courses</a>
+      <a href="#assignments">Assignments</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#grades">Grades</a>
     </div>
+  </nav>
 
-    <h2 style="margin-top: 40px;">Announcements</h2>
-    <p>🎯 Don’t forget: Midterm exams start next week! Review your notes early.</p>
-    <p>📢 New feature added: Upload your study materials in the Notes section.</p>
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="container">
+    <section id="courses">
+      <h2>📘 Courses</h2>
+      <p>View all your enrolled courses and access materials here.</p>
+    </section>
+
+    <section id="assignments" style="margin-top: 30px;">
+      <h2>📝 Assignments</h2>
+      <p>Stay on top of your homework and deadlines efficiently.</p>
+    </section>
+
+    <section id="schedule" style="margin-top: 30px;">
+      <h2>📅 Schedule</h2>
+      <p>Check your class timetable and upcoming events.</p>
+    </section>
+
+    <section id="grades" style="margin-top: 30px;">
+      <h2>📊 Grades</h2>
+      <p>Keep track of your academic progress and performance.</p>
+    </section>
 
     <a href="frontpage.html" class="logout">← Log Out</a>
   </div>
 
   <footer>
-    <p>© 2025 AcadEase | Designed to make learning easier.</p>
+    <p>© 2025 AcadEase | Making learning simpler and smarter.</p>
   </footer>
-  </style>
-</head>
-<body>
-  <a href="frontpage.html">← Back to Home</a>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+  </script>
 </body>
 </html>
