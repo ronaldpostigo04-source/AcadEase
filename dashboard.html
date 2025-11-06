@@ -76,7 +76,6 @@
       display: block;
     }
 
-    /* PAGE CONTENT */
     main {
       padding: 40px 20px;
       text-align: center;
@@ -86,46 +85,27 @@
       color: #1b4332;
       margin-top: 50px;
     }
-
-    /* Responsive */
-    @media (min-width: 700px) {
-      .menu-icon {
-        display: none;
-      }
-
-      .side-nav {
-        left: 0;
-        width: 200px;
-        height: 100%;
-        position: fixed;
-      }
-
-      main {
-        margin-left: 200px;
-        text-align: left;
-      }
-
-      .overlay {
-        display: none !important;
-      }
-    }
   </style>
 </head>
 <body>
-
   <header>
     <h1>AcadEase</h1>
     <span class="menu-icon" onclick="toggleMenu()">☰</span>
   </header>
 
   <div class="side-nav" id="sideNav">
-    <a href="#assignments">📝 Assignments</a>
+    <a href="assignment.html">📝 Assignments</a>
     <a href="#courses">📘 Courses</a>
     <a href="#schedule">📅 Schedule</a>
     <a href="#grades">📊 Grades</a>
   </div>
 
   <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+  <main>
+    <h2>Welcome to AcadEase Dashboard</h2>
+    <p>Use the menu (☰) to navigate between your study tools.</p>
+  </main>
 
   <script>
     function toggleMenu() {
