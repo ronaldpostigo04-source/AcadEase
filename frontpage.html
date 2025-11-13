@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AcadEase!</title>
   <link rel="stylesheet" href="style.css"> 
-  <a href="login.html" class="btn">Sign In</a>
-  <a href="signup.html" class="btn">Sign Up</a>
-
 </head>
 <body>
   <header>
@@ -16,7 +12,7 @@
     <nav>
       <a href="#about">About</a>
       <a href="#features">Features</a>
-      <a hrSef="#contact">Contact</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
@@ -24,7 +20,12 @@
     <div>
       <h2> A Online Portal</h2>
       <p>AcadEase helps students and teachers stay organized with assignments, schedules, and communication – all in one powerful platform.</p>
-      <a href="#features" class="btn">Get Started</a>
+      <a href="#" class="btn" id="getStartedBtn">Get Started</a>
+
+      <div id="authButtons" style="display: none; margin-top: 20px;">
+        <a href="login.html" class="btn">Sign In</a>
+        <a href="signup.html" class="btn">Sign Up</a>
+      </div>
     </div>
   </section>
 
@@ -66,7 +67,6 @@
     </div>
   </section>
 
- 
   <section id="contact" class="section">
     <h2>Contact Us</h2>
     <p>Have questions or feedback? Reach us at <b>support@acadease.com</b></p>
@@ -75,6 +75,15 @@
   <footer>
     <p>© 2025 AcadEase. All Rights Reserved.</p>
   </footer>
+
+
+  <script>
+    document.getElementById("getStartedBtn").addEventListener("click", function(event) {
+      event.preventDefault();
+      const authButtons = document.getElementById("authButtons");
+      authButtons.style.display = authButtons.style.display === "none" ? "block" : "none";
+    });
+  </script>
 
   <script src="script.js"></script> 
 </body>
