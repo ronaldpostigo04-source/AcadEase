@@ -3,94 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assignments - AcadEase</title>
+  <title>AcadEase Dashboard</title>
+
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f0fdf4;
       margin: 0;
-      padding: 0;
     }
 
-    header {
+    .nav-header {
       background: #1b4332;
       color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 15px 20px;
-      text-align: center;
     }
 
-    .container {
-      max-width: 800px;
-      background: #fff;
-      margin: 40px auto;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    .menu-icon {
+      font-size: 26px;
+      cursor: pointer;
     }
 
-    h2 {
-      color: #1b4332;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .assignment {
-      background: #d8f3dc;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      border-left: 6px solid #1b4332;
-    }
-
-    .assignment h3 {
-      margin-top: 0;
-      color: #1b4332;
-    }
-
-    .assignment p {
-      color: #333;
-    }
-
-    a.back {
-      display: inline-block;
-      margin-top: 20px;
-      text-decoration: none;
+    .side-nav {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
       background: #1b4332;
       color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
+      padding-top: 60px;
       transition: 0.3s;
+      z-index: 1000;
     }
 
-    a.back:hover {
+    .side-nav.active {
+      left: 0;
+    }
+
+    .side-nav a {
+      display: block;
+      padding: 15px 25px;
+      text-decoration: none;
+      color: white;
+      font-size: 1.1rem;
+    }
+
+    .side-nav a:hover {
       background: #40916c;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      z-index: 500;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    main {
+      text-align: center;
+      margin-top: 100px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Assignments</h1>
-  </header>
 
-  <div class="container">
-    <h2>📝 Your Task</h2>
+  <main>
+    <h2>Welcome to AcadEase Dashboard</h2>
+    <p>Use the menu (☰) to navigate between your study tools.</p>
+  </main>
 
-    <div class="assignment">
-      <h3>Assignment 1: Create a Web Page</h3>
-      <p><strong>Description:</strong> Design and develop a simple web page using HTML and CSS.  
-         The web page should include your name, a brief introduction, and at least one image.</p>
-      <p><strong>Deadline:</strong> November 15, 2025</p>
-      <p><strong>Status:</strong> Pending Submission</p>
-    </div>
+  <script src="navigation.js"></script>
 
-    <div class="assignment">
-      <h3>Assignment 2: Responsive Layout</h3>
-      <p><strong>Description:</strong> Make your web page responsive for both mobile and desktop view.</p>
-      <p><strong>Deadline:</strong> November 22, 2025</p>
-      <p><strong>Status:</strong> Not Started</p>
-    </div>
-
-    <a href="index.html" class="back">← Back to Dashboard</a>
-  </div>
 </body>
 </html>
