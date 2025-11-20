@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Courses</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0fdf4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-header {
+      background: #1b4332;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .add-btn {
+      background: #40916c;
+      padding: 8px 15px;
+      border-radius: 5px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .course-container {
+      width: 90%;
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .course-item {
+      padding: 15px;
+      margin: 10px 0;
+      background: #d8f3dc;
+      border-radius: 8px;
+      font-size: 18px;
+    }
+
+    .back-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .back-btn {
+      background: #1b4332;
+      padding: 8px 15px;
+      border-radius: 5px;
+      color: white;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="nav-header">
+    <h2>Courses</h2>
+    <a href="create_course.html" class="add-btn">+ Add Course</a>
+  </div>
+
+  <div class="course-container" id="courseList">
+    <h3>Your Courses</h3>
+  </div>
+
+  <div class="back-container">
+    <a href="dashboard.html" class="back-btn">Back to Dashboard</a>
+  </div>
+
+<script>
+  function loadCourses() {
+    let courses = JSON.parse(localStorage.getItem("courses")) || [];
+    let container = document.getElementById("courseList");
+
+    if (courses.length === 0) {
+      container.innerHTML += "<p>No courses added yet.</p>";
+      return;
+    }
+
+    courses.forEach(course => {
+      container.innerHTML += `
+        <div class="course-item">
+          <strong>${course.name}</strong><br>
+          Instructor: ${course.instructor}
+        </div>
+      `;
+    });
+  }
+
+  loadCourses();
+</script>
+
+</body>
+</html>
