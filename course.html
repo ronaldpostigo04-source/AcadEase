@@ -83,38 +83,42 @@
   function loadCourses() {
     let courses = JSON.parse(localStorage.getItem("courses")) || [];
 
-    // ADD DEFAULT COURSES IF STORAGE IS EMPTY
-    if (courses.length === 0) {
+    const defaultCourses = [
+      { name: "Web Development", instructor: "Default Instructor" },
+      { name: "Programming Fundamentals", instructor: "Prof. Santos" },
+      { name: "Database Systems", instructor: "Prof. Ramirez" },
+      { name: "Computer Networks", instructor: "Prof. Dela Cruz" },
+      { name: "Software Engineering", instructor: "Prof. Hernandez" }
+    ];
 
-      const defaultCourses = [
-        { name: "Web Development", instructor: "Default Instructor" },
-        { name: "Programming Fundamentals", instructor: "Prof. Santos" },
-        { name: "Database Systems", instructor: "Prof. Ramirez" },
-        { name: "Computer Networks", instructor: "Prof. Dela Cruz" },
-        { name: "Software Engineering", instructor: "Prof. Hernandez" }
-      ];
+    // ADD DEFAULT COURSES IF NOT EXISTING
+    defaultCourses.forEach(defaultCourse => {
+      const exists = courses.some(c => c.name === defaultCourse.name);
+      if (!exists) {
+        courses.push(defaultCourse);
+      }
+    });
 
-      courses = defaultCourses;
-      localStorage.setItem("courses", JSON.stringify(courses));
-    }
+    localStorage.setItem("courses", JSON.stringify(courses));
 
     let container = document.getElementById("courseList");
-    container.innerHTML = ""; // clear first para walang duplicate
+    container.innerHTML = "";
 
+    // MAKE EACH COURSE TOUCHABLE & CLICKABLE
     courses.forEach(course => {
       container.innerHTML += `
-        <div class="course-item">
-          <strong>${course.name}</strong><br>
-          Instructor: ${course.instructor}
-        </div>
+        <a href="create.html" style="text-decoration:none; color:black;">
+          <div class="course-item" style="cursor:pointer;">
+            <strong>${course.name}</strong><br>
+            Instructor: ${course.instructor}
+          </div>
+        </a>
       `;
     });
   }
 
   loadCourses();
 </script>
-
-
 
 </body>
 </html>

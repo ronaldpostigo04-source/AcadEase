@@ -16,3 +16,4 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.2 });
 
 document.querySelectorAll('.section, .card').forEach(el => observer.observe(el));
+
