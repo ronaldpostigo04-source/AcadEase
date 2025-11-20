@@ -84,7 +84,7 @@
     let container = document.getElementById("courseList");
 
     if (courses.length === 0) {
-      container.innerHTML += "<p>No courses added yet.</p>";
+      container.innerHTML = "<p>No courses added yet.</p>";
       return;
     }
 
@@ -100,6 +100,7 @@
 
   loadCourses();
 </script>
+
 
 </body>
 </html>

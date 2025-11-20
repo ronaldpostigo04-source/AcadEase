@@ -91,16 +91,21 @@
       return;
     }
 
-    let course = { name, instructor };
+    let newCourse = {
+      name: name,
+      instructor: instructor
+    };
 
     let courses = JSON.parse(localStorage.getItem("courses")) || [];
-    courses.push(course);
+    courses.push(newCourse);
+
     localStorage.setItem("courses", JSON.stringify(courses));
 
-    alert("Course added successfully!");
+    alert("Course created successfully!");
     window.location.href = "course.html";
   }
 </script>
+
 
 </body>
 </html>
