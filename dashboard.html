@@ -76,17 +76,46 @@
       display: block;
     }
 
-    .assignment-card {
-      background:white;
-      padding:15px;
-      margin:10px auto;
-      width:90%;
-      max-width:500px;
-      border-radius:10px;
-      box-shadow:0 2px 5px rgba(0,0,0,0.2);
+    main {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    main h2 {
+      color: #1b4332;
+      margin-top: 50px;
     }
   </style>
 </head>
+
+<script>
+  function displayAssignments() {
+    let container = document.getElementById("assignmentList");
+    let assignments = JSON.parse(localStorage.getItem("assignments")) || [];
+
+    container.innerHTML = "";
+
+    assignments.forEach(a => {
+      container.innerHTML += `
+        <div style="
+          background:white;
+          padding:15px;
+          margin:10px auto;
+          width:90%;
+          max-width:500px;
+          border-radius:10px;
+          box-shadow:0 2px 5px rgba(0,0,0,0.2);">
+          
+          <h3>${a.title}</h3>
+          <p>${a.description}</p>
+          <strong>Deadline: ${a.deadline}</strong>
+        </div>
+      `;
+    });
+  }
+
+  displayAssignments();
+</script>
 
 <body>
   <header>
@@ -99,53 +128,27 @@
     <a href="#courses">📘 Courses</a>
     <a href="#schedule">📅 Schedule</a>
     <a href="#grades">📊 Grades</a>
-  </div>
+</div>
 
-  <div id="assignmentList"></div>
+<div id="assignmentList"></div>
 
   <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-  <!-- THIS WILL DISAPPEAR WHEN AN ASSIGNMENT EXISTS -->
-  <main id="welcomeSection">
+  <main>
     <h1>Welcome to AcadEase Dashboard</h1>
-    <p>
-      AcadEase is a simple-to-use academic management platform that helps students easily manage their academic work,
-      schedules, and deadlines. The platform assists in tracking important deadlines, organizing classes, and improving
-      productivity every day.
-    </p>
+    <p>AcadEase is a simple to use academic management platform that helps students easily manage their academic work,
+       schedules, and deadlines. The platform has an organized and intuitive design that helps students track important 
+       deadlines, keep track of their classes, and manage expectations for academic success. AcadEase is easy to navigate, 
+       and, with its helpful features, it promotes studying and productivity in a simple way that helps to elevate students 
+       every day.</p>
+    
   </main>
 
-<script>
-  function displayAssignments() {
-    let container = document.getElementById("assignmentList");
-    let welcome = document.getElementById("welcomeSection");
-    let assignments = JSON.parse(localStorage.getItem("assignments")) || [];
-
-    container.innerHTML = "";
-
-    // If there are assignments → hide welcome text
-    if (assignments.length > 0) {
-      welcome.style.display = "none";
+  <script>
+    function toggleMenu() {
+      document.getElementById("sideNav").classList.toggle("active");
+      document.getElementById("overlay").classList.toggle("active");
     }
-
-    assignments.forEach(a => {
-      container.innerHTML += `
-        <div class="assignment-card">
-          <h3>${a.title}</h3>
-          <p>${a.description}</p>
-          <strong>Deadline: ${a.deadline}</strong>
-        </div>
-      `;
-    });
-  }
-
-  displayAssignments();
-
-  function toggleMenu() {
-    document.getElementById("sideNav").classList.toggle("active");
-    document.getElementById("overlay").classList.toggle("active");
-  }
-</script>
-
+  </script>
 </body>
 </html>
