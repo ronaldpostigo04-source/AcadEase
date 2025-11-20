@@ -3,90 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AcadEase Dashboard</title>
+  <title>Create Assignment</title>
 
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f0fdf4;
       margin: 0;
+      padding: 0;
     }
 
     .nav-header {
       background: #1b4332;
       color: white;
+      padding: 15px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 20px;
     }
 
-    .menu-icon {
-      font-size: 26px;
+    .back-btn {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      background: #40916c;
+      padding: 8px 15px;
+      border-radius: 5px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 600px;
+      background: white;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #1b4332;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: #1b4332;
+      color: white;
+      font-size: 16px;
+      border-radius: 6px;
       cursor: pointer;
     }
 
-    .side-nav {
-      position: fixed;
-      top: 0;
-      left: -250px;
-      width: 250px;
-      height: 100%;
-      background: #1b4332;
-      color: white;
-      padding-top: 60px;
-      transition: 0.3s;
-      z-index: 1000;
-    }
-
-    .side-nav.active {
-      left: 0;
-    }
-
-    .side-nav a {
-      display: block;
-      padding: 15px 25px;
-      text-decoration: none;
-      color: white;
-      font-size: 1.1rem;
-    }
-
-    .side-nav a:hover {
+    button:hover {
       background: #40916c;
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      z-index: 500;
-    }
-
-    .overlay.active {
-      display: block;
-    }
-
-    main {
-      text-align: center;
-      margin-top: 100px;
     }
   </style>
 </head>
+
 <body>
 
-  <div class="side-nav" id="sideNav">
-    <a href="index.html">🏠 Dashboard</a>
-    <a href="assignment.html">📝 Assignments</a>
-    <a href="#courses">📘 Courses</a>
-    <a href="#schedule">📅 Schedule</a>
-    <a href="#grades">📊 Grades</a>
-</div>
+  <div class="nav-header">
+    <h3>Create Assignment</h3>
+    <a href="index.html" class="back-btn">⬅ Back to Dashboard</a>
+  </div>
 
-  <script src="navigation.js"></script>
+  <div class="container">
+    <h2>Create New Activity / Assignment</h2>
+
+    <label>Activity Title:</label>
+    <input type="text" placeholder="Enter activity name...">
+
+    <label>Description:</label>
+    <textarea rows="5" placeholder="Describe the task here..."></textarea>
+
+    <label>Deadline:</label>
+    <input type="date">
+
+    <button>Create Assignment</button>
+  </div>
 
 </body>
 </html>
