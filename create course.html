@@ -6,101 +6,55 @@
   <title>Create Course</title>
 
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f0fdf4;
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 600px;
-      background: white;
-      margin: 40px auto;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    button {
-      margin-top: 20px;
-      width: 100%;
-      padding: 12px;
-      border: none;
-      background: #1b4332;
-      color: white;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #40916c;
-    }
-
-    .back-container {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .back-btn {
-      background: #1b4332;
-      padding: 8px 15px;
-      border-radius: 5px;
-      color: white;
-      text-decoration: none;
-    }
+    body { font-family: 'Segoe UI', sans-serif; background:#f0fdf4; margin:0; padding:0; }
+    .container { width:90%; max-width:600px; background:white; margin:40px auto; padding:20px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+    input { width:100%; padding:10px; margin-top:5px; border:1px solid #ccc; border-radius:6px; }
+    button { margin-top:20px; width:100%; padding:12px; border:none; background:#1b4332; color:white; font-size:16px; border-radius:6px; cursor:pointer; }
+    button:hover { background:#40916c; }
+    .back-container { text-align:center; margin-top:20px; }
+    .back-btn { background:#1b4332; padding:8px 15px; border-radius:5px; color:white; text-decoration:none; }
   </style>
 
 </head>
-
 <body>
 
-  <div class="container">
-    <h2>Create New Course</h2>
+<div class="container">
+  <h2>Create New Course</h2>
+  <label>Course Name:</label>
+  <input type="text" id="courseName">
+  <label>Instructor:</label>
+  <input type="text" id="instructor">
+  <button onclick="saveCourse()">Create Course</button>
+</div>
 
-    <label>Course Name:</label>
-    <input type="text" id="courseName">
-
-    <label>Instructor:</label>
-    <input type="text" id="instructor">
-
-    <button onclick="saveCourse()">Create Course</button>
-  </div>
-
-  <div class="back-container">
-    <a href="course.html" class="back-btn">Back to Courses</a>
-  </div>
+<div class="back-container">
+  <a href="course.html" class="back-btn">Back to Courses</a>
+</div>
 
 <script>
-  function saveCourse() {
-    let name = document.getElementById("courseName").value;
-    let instructor = document.getElementById("instructor").value;
+function saveCourse() {
+  const name = document.getElementById("courseName").value.trim();
+  const instructor = document.getElementById("instructor").value.trim();
 
-    if (!name || !instructor) {
-      alert("Please fill out all fields.");
-      return;
-    }
-
-    let newCourse = { name, instructor };
-
-    let courses = JSON.parse(localStorage.getItem("courses")) || [];
-    courses.push(newCourse);
-
-    localStorage.setItem("courses", JSON.stringify(courses));
-
-    alert("Course created successfully!");
-    window.location.href = "course.html";
+  if (!name || !instructor) {
+    alert("Please fill out all fields.");
+    return;
   }
+
+  let courses = JSON.parse(localStorage.getItem("courses")) || [];
+
+  // Prevent adding duplicate course name
+  if (courses.some(c => c.name.toLowerCase() === name.toLowerCase())) {
+    alert("Course already exists!");
+    return;
+  }
+
+  courses.push({ name, instructor });
+  localStorage.setItem("courses", JSON.stringify(courses));
+
+  alert("Course created successfully!");
+  window.location.href = "course.html";
+}
 </script>
 
 </body>
