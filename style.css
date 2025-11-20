@@ -94,6 +94,30 @@ nav a:hover {
   margin-bottom: 30px;
   color: #1b4332;
 }
+.back-container {
+  text-align: center;
+  margin: 25px 0;
+}
+
+.back-btn {
+  display: inline-block;
+  width: 80%;
+  max-width: 300px;
+  text-align: center;
+  padding: 12px 0;
+  background: #1b4332;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background: #40916c;
+}
+
+
 
 #about {
   display: flex;
