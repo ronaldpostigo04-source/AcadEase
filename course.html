@@ -70,8 +70,9 @@
     <a href="create_course.html" class="add-btn">+ Add Course</a>
   </div>
 
-  <div class="course-container" id="courseList">
+  <div class="course-container">
     <h3>Your Courses</h3>
+    <div id="courseList"></div>
   </div>
 
   <div class="back-container">
@@ -81,12 +82,24 @@
 <script>
   function loadCourses() {
     let courses = JSON.parse(localStorage.getItem("courses")) || [];
-    let container = document.getElementById("courseList");
 
+    // ADD DEFAULT COURSES IF STORAGE IS EMPTY
     if (courses.length === 0) {
-      container.innerHTML = "<p>No courses added yet.</p>";
-      return;
+
+      const defaultCourses = [
+        { name: "Web Development", instructor: "Default Instructor" },
+        { name: "Programming Fundamentals", instructor: "Prof. Santos" },
+        { name: "Database Systems", instructor: "Prof. Ramirez" },
+        { name: "Computer Networks", instructor: "Prof. Dela Cruz" },
+        { name: "Software Engineering", instructor: "Prof. Hernandez" }
+      ];
+
+      courses = defaultCourses;
+      localStorage.setItem("courses", JSON.stringify(courses));
     }
+
+    let container = document.getElementById("courseList");
+    container.innerHTML = ""; // clear first para walang duplicate
 
     courses.forEach(course => {
       container.innerHTML += `
@@ -100,6 +113,7 @@
 
   loadCourses();
 </script>
+
 
 
 </body>

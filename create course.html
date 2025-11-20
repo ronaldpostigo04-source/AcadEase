@@ -91,10 +91,7 @@
       return;
     }
 
-    let newCourse = {
-      name: name,
-      instructor: instructor
-    };
+    let newCourse = { name, instructor };
 
     let courses = JSON.parse(localStorage.getItem("courses")) || [];
     courses.push(newCourse);
@@ -105,7 +102,6 @@
     window.location.href = "course.html";
   }
 </script>
-
 
 </body>
 </html>
