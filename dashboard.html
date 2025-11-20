@@ -87,6 +87,36 @@
     }
   </style>
 </head>
+
+<script>
+  function displayAssignments() {
+    let container = document.getElementById("assignmentList");
+    let assignments = JSON.parse(localStorage.getItem("assignments")) || [];
+
+    container.innerHTML = "";
+
+    assignments.forEach(a => {
+      container.innerHTML += `
+        <div style="
+          background:white;
+          padding:15px;
+          margin:10px auto;
+          width:90%;
+          max-width:500px;
+          border-radius:10px;
+          box-shadow:0 2px 5px rgba(0,0,0,0.2);">
+          
+          <h3>${a.title}</h3>
+          <p>${a.description}</p>
+          <strong>Deadline: ${a.deadline}</strong>
+        </div>
+      `;
+    });
+  }
+
+  displayAssignments();
+</script>
+
 <body>
   <header>
     <h1>AcadEase</h1>
@@ -101,6 +131,7 @@
     <a href="#grades">📊 Grades</a>
 </div>
 
+<div id="assignmentList"></div>
 
   <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 

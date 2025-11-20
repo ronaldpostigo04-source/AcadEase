@@ -29,6 +29,7 @@
       background: #40916c;
       padding: 8px 15px;
       border-radius: 5px;
+      cursor: pointer;
     }
 
     .container {
@@ -83,23 +84,53 @@
 
   <div class="nav-header">
     <h3>Create Assignment</h3>
-    <a href="index.html" class="back-btn">⬅ Back to Dashboard</a>
+    <a href="dashboard.html" class="back-btn">⬅ Back to Dashboard</a>
   </div>
 
   <div class="container">
     <h2>Create New Activity / Assignment</h2>
 
     <label>Activity Title:</label>
-    <input type="text" placeholder="Enter activity name...">
+    <input type="text" id="title" placeholder="Enter activity name...">
 
     <label>Description:</label>
-    <textarea rows="5" placeholder="Describe the task here..."></textarea>
+    <textarea rows="5" id="description" placeholder="Describe the task here..."></textarea>
 
     <label>Deadline:</label>
-    <input type="date">
+    <input type="date" id="deadline">
 
-    <button>Create Assignment</button>
+    <button onclick="saveAssignment()">Create Assignment</button>
   </div>
+
+
+  <!-- ADD JAVASCRIPT FOR SAVING -->
+  <script>
+    function saveAssignment() {
+      let title = document.getElementById("title").value;
+      let description = document.getElementById("description").value;
+      let deadline = document.getElementById("deadline").value;
+
+      if (!title || !description || !deadline) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      let assignment = {
+        title: title,
+        description: description,
+        deadline: deadline
+      };
+
+      let assignments = JSON.parse(localStorage.getItem("assignments")) || [];
+      assignments.push(assignment);
+
+      localStorage.setItem("assignments", JSON.stringify(assignments));
+
+      alert("Assignment created successfully!");
+
+      window.location.href = "dashboard.html";
+    }
+  </script>
 
 </body>
 </html>
