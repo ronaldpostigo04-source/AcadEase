@@ -1,97 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up - AcadEase</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f0fdf4;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - AcadEase</title>
+    <style>
+        body {
+        font-family: 'Segoe UI', sans-serif;
+        background: #f0fdf4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        }
 
-    .form-box {
-      background: #eaedec;
-      padding: 50px 60px;
-      border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-      width: 420px;
-      text-align: center;
-      transition: 0.3s ease;
-    }
+        .form-box {
+        background: #eaedec;
+        padding: 50px 60px;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        width: 420px;
+        text-align: center;
+        transition: 0.3s ease;
+        }
 
-    .form-box:hover {
-      transform: scale(1.02);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
+        .form-box:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
 
-    h2 {
-      color: #1b4332;
-      margin-bottom: 30px;
-      font-size: 2rem;
-    }
+        h2 {
+        color: #1b4332;
+        margin-bottom: 30px;
+        font-size: 2rem;
+        }
 
-    input {
-      width: 100%;
-      padding: 14px;
-      margin: 12px 0;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      font-size: 1rem;
-    }
+        input {
+        width: 100%;
+        padding: 14px;
+        margin: 12px 0;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        font-size: 1rem;
+        }
 
-    button {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      background: #1b4332;
-      color: rgb(24, 167, 88);
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-      margin-top: 10px;
-    }
+        button {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 10px;
+        background: #1b4332;
+        color: rgb(24, 167, 88);
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 10px;
+        }
 
-    button:hover {
-      background: #40916c;
-    }
+        button:hover {
+        background: #40916c;
+        }
 
-    p {
-      margin-top: 15px;
-      font-size: 0.9rem;
-    }
+        p {
+        margin-top: 15px;
+        font-size: 0.9rem;
+        }
 
-    a {
-      display: inline-block;
-      margin-top: 20px;
-      color: #1b4332;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.2s;
-    }
+        a {
+        display: inline-block;
+        margin-top: 20px;
+        color: #1b4332;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.2s;
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <div class="form-box">
-    <h2>Sign Up</h2>
-    <form>
-      <input type="text" placeholder="Full Name" required>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Password" required>
-      <button type="submit">Sign Up</button>
-    </form>
-    <a href="frontpage.html">← Back to Home</a>
-  </div>
-</body>
+        a:hover {
+        text-decoration: underline;
+        }
+    </style>
+    </head>
+    <body>
+      <div class="form-box">
+        <h2>Sign Up</h2>
+        <form id="signUpForm">
+            <input type="text" name="fullName" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        <a href="./">← Back to Home</a>
+      </div>
+      <script>
+        document.getElementById("signUpForm").addEventListener("submit", async function(e) {
+          e.preventDefault();
+          
+          // Get the form element reference, which is 'this' inside the listener
+          const form = e.target;
+          
+          // Access inputs by their name attributes for clarity
+          const nameValue = form.fullName.value;
+          const emailValue = form.email.value;
+          const passwordValue = form.password.value;
+          
+          // When user signs up
+          try {
+            await fetch('./backend/register.php', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                // Changed to use named variables
+                name: nameValue,
+                email: emailValue,
+                password: passwordValue
+              })
+            });
+            e.target.reset();
+            alert("Sign up successful! You can now log in.");
+          } catch (error) {
+            alert("Error during sign up. Please try again."); 
+          }
+
+        });
+      </script>
+    </body>
 </html>
