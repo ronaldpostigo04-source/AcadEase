@@ -107,7 +107,7 @@
           
           // When user signs up
           try {
-            await fetch('./backend/register.php', {
+            const response = await fetch('./backend/register.php', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -119,10 +119,18 @@
                 password: passwordValue
               })
             });
-            e.target.reset();
-            alert("Sign up successful! You can now log in.");
+
+            const result = await response.json();
+            
+            if (response.ok) {
+                // Status is 200-299 (e.g., 201 Created)
+                alert("Sign up successful! You can now log in.");
+                form.reset();
+            } else {
+                alert(`Sign up failed: ${result.message || 'Unknown error occurred.'}`);
+            }
           } catch (error) {
-            alert("Error during sign up. Please try again."); 
+            alert(`Error during sign up: ${error.message}`); 
           }
 
         });
