@@ -48,13 +48,26 @@
       left: 0;
     }
 
-    .side-nav a {
+    .side-nav a, .side-nav button {
       display: block;
       color: white;
       text-decoration: none;
       padding: 15px 25px;
       font-size: 1.1rem;
       transition: 0.3s;
+    }
+
+    .side-nav button {
+      border: none;
+      background: none;
+      outline: none;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+    }
+
+    .side-nav button:hover {
+      background-color: rgba(255, 255, 255, 0.11);
     }
 
     .side-nav a:hover {
@@ -128,6 +141,7 @@
     <a href="course.html">📘 Courses</a>
     <a href="#schedule">📅 Schedule</a>
     <a href="#grades">📊 Grades</a>
+    <button onclick="logout();">Logout</button>
 </div>
 
 
@@ -151,6 +165,46 @@
       document.getElementById("overlay").classList.toggle("active");
     }
 
+    async function logout() {
+      const API_URL = "./backend/logout.php";
+
+      try {
+          const response = await fetch(API_URL, {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json"
+              }
+          });
+
+          const result = await response.json();
+
+          if (response.ok && result.success) {
+              window.location.href = "login.html"; // Redirect to login page
+          } 
+      } catch (error) {
+          console.error("Network or server error:", error);
+      }
+    }
+
+    async function checkLoginStatus() {
+      try {
+          const response = await fetch("backend/login.php", {
+              method: "GET",
+              headers: { "Content-Type": "application/json" }
+          });
+
+          const result = await response.json();
+
+          if (!response.ok || !result.isLoggedIn) {
+              window.location.href = "login.html"; 
+          }
+      } catch (error) {
+          console.error("Network error:", error);
+          window.location.href = "login.html";
+      }
+    }
+
+    checkLoginStatus();
   </script>
 
 </body>
