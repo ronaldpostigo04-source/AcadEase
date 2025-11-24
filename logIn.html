@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - AcadEase</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f0fdf4;
+      background: linear-gradient(135deg, #1b4332 0%, #40916c 100%);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -15,34 +21,64 @@
       margin: 0;
     }
 
+    .container {
+      width: 100%;
+      max-width: 450px;
+      padding: 20px;
+    }
+
     .form-box {
       background: #fff;
-      padding: 50px 60px;
+      padding: 40px 50px;
       border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-      width: 420px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
       text-align: center;
       transition: 0.3s ease;
     }
 
     .form-box:hover {
-      transform: scale(1.02);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      color: #1b4332;
+      margin-bottom: 10px;
+      font-weight: bold;
     }
 
     h2 {
       color: #1b4332;
       margin-bottom: 30px;
-      font-size: 2rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #1b4332;
+      font-weight: 500;
     }
 
     input {
       width: 100%;
       padding: 14px;
-      margin: 12px 0;
-      border: 1px solid #ccc;
+      border: 2px solid #e0e0e0;
       border-radius: 10px;
       font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #40916c;
     }
 
     button {
@@ -51,7 +87,7 @@
       border: none;
       border-radius: 10px;
       background: #1b4332;
-      color: rgb(24, 167, 88);
+      color: white;
       font-weight: bold;
       font-size: 1rem;
       cursor: pointer;
@@ -60,12 +96,46 @@
     }
 
     button:hover {
-      background: #40916c;
+      background: #2d6a4f;
+      transform: translateY(-2px);
     }
 
-    p {
-      margin-top: 15px;
+    .demo-info {
+      background: #e8f5e8;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px 0;
+      text-align: left;
       font-size: 0.9rem;
+      color: #1b4332;
+    }
+
+    .demo-info h3 {
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .demo-info p {
+      margin: 5px 0;
+    }
+
+    .message {
+      padding: 10px;
+      border-radius: 5px;
+      margin: 15px 0;
+      display: none;
+    }
+
+    .success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
     }
 
     a {
@@ -79,75 +149,97 @@
 
     a:hover {
       text-decoration: underline;
+      color: #2d6a4f;
+    }
+
+    .footer {
+      margin-top: 30px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <div class="form-box">
-    <h2>Login</h2>
-    <form id="loginForm">
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <button type="submit">Login</button>
-    </form>
-    <a href="./">← Back to Home</a>
+  <div class="container">
+    <div class="form-box">
+      <div class="logo">AcadEase</div>
+      <h2>Login to Your Account</h2>
+      
+      <div class="demo-info">
+        <h3>Demo Credentials:</h3>
+        <p><strong>Email:</strong> AcadEase123@gmail.com</p>
+        <p><strong>Password:</strong> acadease123</p>
+      </div>
+      
+      <div id="message" class="message"></div>
+      
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+        
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required>
+        </div>
+        
+        <button type="submit">Login</button>
+      </form>
+      
+      <a href="index.html">← Back to Home</a>
+    </div>
+    
+    <div class="footer">
+      © 2025 AcadEase. All Rights Reserved.
+    </div>
   </div>
 
   <script>
-    document.getElementById("loginForm").addEventListener("submit", async function(e) {
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault(); 
-      const form = e.target;
-      const email = form.email.value;
-      const password = form.password.value;
-      const API_URL = "./backend/login.php";
-
-      try {
-          const response = await fetch(API_URL, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ email, password })
-          });
-
-          const result = await response.json();
-
-          if (response.ok && result.success) {
-              // Login OK — redirect immediately
-              window.location.href = "dashboard.html";
-          } else {
-              alert(result.message || "Invalid login");
-          }
-
-      } catch (error) {
-          console.error("Error during login:", error);
-          alert("An error occurred. Please try again later.");
+      
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const messageEl = document.getElementById("message");
+      
+      // Clear previous messages
+      messageEl.style.display = "none";
+      messageEl.className = "message";
+      
+      // Demo validation with your credentials
+      if (email === "AcadEase123@gmail.com" && password === "acadease123") {
+        // Show success message
+        messageEl.textContent = "Login successful! Redirecting to dashboard...";
+        messageEl.className = "message success";
+        messageEl.style.display = "block";
+        
+        // Store login status in localStorage
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userEmail', email);
+        
+        // Simulate API call delay
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 1500);
+      } else {
+        // Show error message
+        messageEl.textContent = "Invalid email or password. Please try again.";
+        messageEl.className = "message error";
+        messageEl.style.display = "block";
+        
+        // Clear password field
+        document.getElementById("password").value = "";
       }
     });
 
-
-    async function checkLoginStatus() {
-      const API_URL = "./backend/login.php";
-
-      try {
-          const response = await fetch(API_URL, {
-              method: "GET", // Use the new GET method
-              headers: {
-                  "Content-Type": "application/json"
-              }
-          });
-
-          const result = await response.json();
-
-          if (response.ok && result.isLoggedIn) {
-              console.log("User is logged in. User ID:", result.userId);
-              window.location.href = "dashboard.html"; // Redirect to login page
-          } 
-      } catch (error) {
-          console.error("Network or server error:", error);
-          // Handle critical errors (e.g., show maintenance message)
+    // Check if user is already logged in
+    window.onload = function() {
+      if (localStorage.getItem('isLoggedIn') === 'true') {
+        window.location.href = "dashboard.html";
       }
-  }
-
-  window.onload = checkLoginStatus;
+    };
   </script>
 </body>
 </html>
