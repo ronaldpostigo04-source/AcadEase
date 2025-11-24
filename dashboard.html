@@ -431,6 +431,13 @@
       border-radius: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       border-left: 4px solid #40916c;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .assignment-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
 
     .assignment-item h3 {
@@ -448,6 +455,21 @@
       font-weight: bold;
     }
 
+    .assignment-item .submission-status {
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+
+    .assignment-item .submitted {
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    .assignment-item .not-submitted {
+      color: #dc3545;
+      font-weight: bold;
+    }
+
     .empty-state {
       text-align: center;
       color: #666;
@@ -456,6 +478,80 @@
       border-radius: 10px;
       margin: 20px auto;
       max-width: 500px;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .modal h3 {
+      color: #1b4332;
+      margin-bottom: 20px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .modal-buttons button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #1b4332;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #6c757d;
+      color: white;
+    }
+
+    .submission-link {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 5px;
+      word-break: break-all;
+    }
+
+    .submission-link a {
+      color: #1b4332;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .submission-link a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -652,11 +748,35 @@
     </div>
   </main>
 
+  <!-- Assignment Submission Modal -->
+  <div class="modal" id="submissionModal">
+    <div class="modal-content">
+      <h3 id="modalAssignmentTitle">Submit Assignment</h3>
+      <div class="form-group">
+        <label for="submissionLink">Assignment/Activity Link</label>
+        <input type="url" id="submissionLink" placeholder="https://example.com/your-assignment" required>
+      </div>
+      
+      <div id="existingSubmission" style="display: none;">
+        <h4>Current Submission:</h4>
+        <div class="submission-link" id="currentSubmissionLink">
+          <!-- Current submission link will appear here -->
+        </div>
+      </div>
+      
+      <div class="modal-buttons">
+        <button type="button" class="btn-secondary" onclick="closeSubmissionModal()">Cancel</button>
+        <button type="button" class="btn-primary" onclick="submitAssignmentLink()">Submit Link</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Calendar variables
     let currentDate = new Date();
     let currentMonth = currentDate.getMonth();
     let currentYear = currentDate.getFullYear();
+    let currentAssignmentId = null;
 
     // Menu toggle function
     function toggleMenu() {
@@ -710,17 +830,87 @@
       }
 
       container.innerHTML = '';
-      assignments.forEach(assignment => {
+      assignments.forEach((assignment, index) => {
         const assignmentElement = document.createElement('div');
         assignmentElement.className = 'assignment-item';
+        assignmentElement.setAttribute('data-id', index);
+        assignmentElement.onclick = () => openSubmissionModal(index);
+        
+        const submissionStatus = assignment.submissionLink ? 
+          `<div class="submission-status submitted">✓ Submitted</div>` :
+          `<div class="submission-status not-submitted">✗ Not Submitted</div>`;
+        
         assignmentElement.innerHTML = `
           <h3>${assignment.title}</h3>
           <p>${assignment.description}</p>
           <p><strong>Type:</strong> ${assignment.type}</p>
           <strong class="deadline">Deadline: ${assignment.deadline}</strong>
+          ${submissionStatus}
         `;
         container.appendChild(assignmentElement);
       });
+    }
+
+    // Open submission modal
+    function openSubmissionModal(assignmentId) {
+      const assignments = JSON.parse(localStorage.getItem("assignments")) || [];
+      const assignment = assignments[assignmentId];
+      
+      if (!assignment) return;
+      
+      currentAssignmentId = assignmentId;
+      document.getElementById('modalAssignmentTitle').textContent = `Submit: ${assignment.title}`;
+      document.getElementById('submissionLink').value = assignment.submissionLink || '';
+      
+      // Show existing submission if available
+      const existingSubmissionDiv = document.getElementById('existingSubmission');
+      const currentSubmissionLinkDiv = document.getElementById('currentSubmissionLink');
+      
+      if (assignment.submissionLink) {
+        existingSubmissionDiv.style.display = 'block';
+        currentSubmissionLinkDiv.innerHTML = `<a href="${assignment.submissionLink}" target="_blank">${assignment.submissionLink}</a>`;
+      } else {
+        existingSubmissionDiv.style.display = 'none';
+      }
+      
+      document.getElementById('submissionModal').classList.add('active');
+    }
+
+    // Close submission modal
+    function closeSubmissionModal() {
+      document.getElementById('submissionModal').classList.remove('active');
+      currentAssignmentId = null;
+    }
+
+    // Submit assignment link
+    function submitAssignmentLink() {
+      const link = document.getElementById('submissionLink').value;
+      
+      if (!link) {
+        alert('Please enter a valid link');
+        return;
+      }
+      
+      // Validate URL format
+      try {
+        new URL(link);
+      } catch (e) {
+        alert('Please enter a valid URL (e.g., https://example.com)');
+        return;
+      }
+      
+      const assignments = JSON.parse(localStorage.getItem("assignments")) || [];
+      
+      if (currentAssignmentId !== null && assignments[currentAssignmentId]) {
+        assignments[currentAssignmentId].submissionLink = link;
+        localStorage.setItem("assignments", JSON.stringify(assignments));
+        
+        // Update display
+        displayAssignments();
+        closeSubmissionModal();
+        
+        alert('Assignment link submitted successfully!');
+      }
     }
 
     // Handle assignment form submission
@@ -738,7 +928,8 @@
         title,
         description,
         deadline,
-        type
+        type,
+        submissionLink: null
       });
       
       localStorage.setItem("assignments", JSON.stringify(assignments));
@@ -880,6 +1071,28 @@
           }
         ];
         localStorage.setItem('calendarEvents', JSON.stringify(sampleEvents));
+      }
+      
+      // Add sample assignments if none exist
+      if (!localStorage.getItem('assignments') || JSON.parse(localStorage.getItem('assignments')).length === 0) {
+        const sampleAssignments = [
+          {
+            title: 'HTML/CSS Portfolio',
+            description: 'Create a personal portfolio website using HTML and CSS',
+            deadline: '2025-02-15',
+            type: 'project',
+            submissionLink: null
+          },
+          {
+            title: 'JavaScript Functions Exercise',
+            description: 'Complete the JavaScript functions practice problems',
+            deadline: '2025-02-10',
+            type: 'assignment',
+            submissionLink: null
+          }
+        ];
+        localStorage.setItem('assignments', JSON.stringify(sampleAssignments));
+        displayAssignments();
       }
     };
   </script>
