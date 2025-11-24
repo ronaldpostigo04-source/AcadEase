@@ -200,6 +200,7 @@
   <header>
     <h1>AcadEase Dashboard</h1>
     <div class="user-info">
+      <span class="user-email" id="userEmail">Welcome!</span>
       <span class="menu-icon" onclick="toggleMenu()">☰</span>
     </div>
   </header>
@@ -254,7 +255,7 @@
 
     // Display user email
     function displayUserInfo() {
-      const userEmail = localStorage.getItem('userEmail') || 'User';
+      const userEmail = localStorage.getItem('userEmail');
       document.getElementById('userEmail').textContent = userEmail;
     }
 
