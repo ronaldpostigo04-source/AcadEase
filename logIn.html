@@ -158,6 +158,26 @@
       font-size: 0.9rem;
       text-align: center;
     }
+
+    .loading {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .spinner {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #1b4332;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -165,7 +185,6 @@
     <div class="form-box">
       <div class="logo">AcadEase</div>
       <h2>Login to Your Account</h2>
-      
       <div id="message" class="message"></div>
       
       <form id="loginForm">
@@ -179,7 +198,11 @@
           <input type="password" id="password" placeholder="Enter your password" required>
         </div>
         
-        <button type="submit">Login</button>
+        <button type="submit" id="loginButton">Login</button>
+        <div class="loading" id="loading">
+          <div class="spinner"></div>
+          <p>Authenticating...</p>
+        </div>
       </form>
       
       <a href="index.html">← Back to Home</a>
@@ -197,42 +220,59 @@
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
       const messageEl = document.getElementById("message");
+      const loginButton = document.getElementById("loginButton");
+      const loading = document.getElementById("loading");
       
       // Clear previous messages
       messageEl.style.display = "none";
       messageEl.className = "message";
       
-      // Demo validation with your credentials
-      if (email === "AcadEase123@gmail.com" && password === "acadease123") {
-        // Show success message
-        messageEl.textContent = "Login successful! Redirecting to dashboard...";
-        messageEl.className = "message success";
-        messageEl.style.display = "block";
-        
-        // Store login status in localStorage
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('userEmail', email);
-        
-        // Simulate API call delay
-        setTimeout(() => {
-          window.location.href = "dashboard.html";
-        }, 1500);
-      } else {
-        // Show error message
-        messageEl.textContent = "Invalid email or password. Please try again.";
-        messageEl.className = "message error";
-        messageEl.style.display = "block";
-        
-        // Clear password field
-        document.getElementById("password").value = "";
-      }
+      // Show loading state
+      loginButton.style.display = "none";
+      loading.style.display = "block";
+      
+      // Simulate API call delay
+      setTimeout(() => {
+        // Demo validation with your credentials
+        if (email === "AcadEase123@gmail.com" && password === "acadease123") {
+          // Show success message
+          messageEl.textContent = "Login successful! Redirecting to dashboard...";
+          messageEl.className = "message success";
+          messageEl.style.display = "block";
+          
+          // Store login status in localStorage
+          localStorage.setItem('isLoggedIn', 'true');
+          localStorage.setItem('userEmail', email);
+          
+          // Redirect after showing success message
+          setTimeout(() => {
+            window.location.href = "dashboard.html";
+          }, 1500);
+        } else {
+          // Show error message
+          messageEl.textContent = "Invalid email or password. Please try again.";
+          messageEl.className = "message error";
+          messageEl.style.display = "block";
+          
+          // Clear password field
+          document.getElementById("password").value = "";
+          
+          // Hide loading, show login button again
+          loading.style.display = "none";
+          loginButton.style.display = "block";
+        }
+      }, 1000); // Simulate 1 second authentication delay
     });
 
-    // Check if user is already logged in
+    // Check if user is already logged in (optional - remove if you want users to always login)
     window.onload = function() {
-      if (localStorage.getItem('isLoggedIn') === 'true') {
-        window.location.href = "dashboard.html";
-      }
+      // If you want to keep users logged in, uncomment the line below
+      // if (localStorage.getItem('isLoggedIn') === 'true') {
+      //   window.location.href = "dashboard.html";
+      // }
+      
+      // For demo purposes, let's clear any existing login status to force fresh login
+      // localStorage.removeItem('isLoggedIn');
     };
   </script>
 </body>
