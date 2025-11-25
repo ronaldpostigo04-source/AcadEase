@@ -17,3 +17,5 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.section, .card').forEach(el => observer.observe(el));
 
+// Test if a specific user can login
+testLogin("test@example.com", "password123");

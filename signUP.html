@@ -1,139 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - AcadEase</title>
-    <style>
-        body {
-        font-family: 'Segoe UI', sans-serif;
-        background: #f0fdf4;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - AcadEase</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
+    header {
+      background: #66d788;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .auth-container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .btn-auth {
+      width: 100%;
+      padding: 12px;
+      background: #20b75f;
+      color: rgb(158, 240, 151);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .btn-auth:hover {
+      background: #0056b3;
+    }
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+    .success-message {
+      color: green;
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+      padding: 15px;
+      background: #f8fff8;
+      border: 1px solid #28a745;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="index.html" style="text-decoration: none; color: inherit;">AcadEase!</a></h1>
+    <nav>
+      <a href="index.html" style="color: white; text-decoration: none;">Home</a>
+    </nav>
+  </header>
+
+  <div class="auth-container">
+    <h2>Create Your Account</h2>
+    
+    <div id="roleDisplay">
+      <div class="form-group">
+        <label for="userType">I am a:</label>
+        <select id="userType" required>
+          <option value="">Select Role</option>
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+        </select>
+      </div>
+    </div>
+
+    <form id="signupForm">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required>
+        <div class="error-message" id="nameError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <div class="error-message" id="emailError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required minlength="6">
+        <div class="error-message" id="passwordError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+        <div class="error-message" id="confirmPasswordError"></div>
+      </div>
+
+      <button type="submit" class="btn-auth">Create Account</button>
+      
+      <div class="error-message" id="formError"></div>
+    </form>
+
+    <div style="text-align: center; margin-top: 15px;">
+      Already have an account? <a href="login.html">Sign In Here</a>
+    </div>
+  <script>
+    // Check if localStorage works
+    function testLocalStorage() {
+      try {
+        localStorage.setItem('test', 'working');
+        const test = localStorage.getItem('test');
+        localStorage.removeItem('test');
+        
+        if (test === 'working') {
+          document.getElementById('debugInfo').innerHTML = '✅ LocalStorage is WORKING!';
+        } else {
+          document.getElementById('debugInfo').innerHTML = '❌ LocalStorage test failed';
         }
+      } catch (e) {
+        document.getElementById('debugInfo').innerHTML = '❌ LocalStorage blocked: ' + e.message;
+      }
+      showAllUsers();
+    }
 
-        .form-box {
-        background: #eaedec;
-        padding: 50px 60px;
-        border-radius: 20px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        width: 420px;
-        text-align: center;
-        transition: 0.3s ease;
+    // Show all stored users
+    function showAllUsers() {
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      let userList = 'No users found';
+      
+      if (users.length > 0) {
+        userList = '<ul>';
+        users.forEach(user => {
+          userList += `<li>${user.name} (${user.email}) - ${user.userType}</li>`;
+        });
+        userList += '</ul>';
+      }
+      
+      document.getElementById('debugInfo').innerHTML += '<br><strong>Stored Users:</strong><br>' + userList;
+    }
+
+    // Clear all data
+    function clearAllData() {
+      localStorage.removeItem('users');
+      localStorage.removeItem('currentUser');
+      document.getElementById('debugInfo').innerHTML = '✅ All data cleared!';
+      showAllUsers();
+    }
+
+    // Simple form submission
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Clear errors
+      document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+      
+      // Get values
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const userType = document.getElementById('userType').value;
+      
+      let hasError = false;
+      
+      // Validation
+      if (name.length < 2) {
+        document.getElementById('nameError').textContent = 'Name must be at least 2 characters';
+        hasError = true;
+      }
+      
+      if (!email.includes('@')) {
+        document.getElementById('emailError').textContent = 'Please enter valid email';
+        hasError = true;
+      }
+      
+      if (password.length < 6) {
+        document.getElementById('passwordError').textContent = 'Password must be 6+ characters';
+        hasError = true;
+      }
+      
+      if (password !== confirmPassword) {
+        document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+        hasError = true;
+      }
+      
+      if (!userType) {
+        alert('Please select your role');
+        hasError = true;
+      }
+      
+      if (!hasError) {
+        // Check if email exists
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        if (users.find(user => user.email === email)) {
+          document.getElementById('emailError').textContent = 'Email already exists';
+          return;
         }
+        
+        // Create user object
+        const newUser = {
+          id: Date.now().toString(),
+          name: name,
+          email: email,
+          password: password,
+          userType: userType,
+          createdAt: new Date().toISOString()
+        };
+        
+        // Save to localStorage
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
+        
+        // Show success
+        alert('🎉 Account created successfully!\n\nYou can now login with:\nEmail: ' + email + '\nPassword: ' + password);
+        
+        // Redirect to login
+        window.location.href = 'login.html';
+      }
+    });
 
-        .form-box:hover {
-        transform: scale(1.02);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        h2 {
-        color: #1b4332;
-        margin-bottom: 30px;
-        font-size: 2rem;
-        }
-
-        input {
-        width: 100%;
-        padding: 14px;
-        margin: 12px 0;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        font-size: 1rem;
-        }
-
-        button {
-        width: 100%;
-        padding: 14px;
-        border: none;
-        border-radius: 10px;
-        background: #1b4332;
-        color: rgb(24, 167, 88);
-        font-weight: bold;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: 0.3s;
-        margin-top: 10px;
-        }
-
-        button:hover {
-        background: #40916c;
-        }
-
-        p {
-        margin-top: 15px;
-        font-size: 0.9rem;
-        }
-
-        a {
-        display: inline-block;
-        margin-top: 20px;
-        color: #1b4332;
-        text-decoration: none;
-        font-weight: bold;
-        transition: 0.2s;
-        }
-
-        a:hover {
-        text-decoration: underline;
-        }
-    </style>
-    </head>
-    <body>
-      <div class="form-box">
-        <h2>Sign Up</h2>
-        <form id="signUpForm">
-            <input type="text" name="fullName" placeholder="Full Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Sign Up</button>
-        </form>
-        <a href="./">← Back to Home</a>
-      </div>
-      <script>
-        document.getElementById("signUpForm").addEventListener("submit", async function(e) {
-          e.preventDefault();
-          
-          // Get the form element reference, which is 'this' inside the listener
-          const form = e.target;
-          
-          // Access inputs by their name attributes for clarity
-          const nameValue = form.fullName.value;
-          const emailValue = form.email.value;
-          const passwordValue = form.password.value;
-          
-          // When user signs up
-          try {
-            const response = await fetch('./backend/register.php', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                // Changed to use named variables
-                name: nameValue,
-                email: emailValue,
-                password: passwordValue
-              })
-            });
-
-            const result = await response.json();
-            
-            if (response.ok) {
-                // Status is 200-299 (e.g., 201 Created)
-                alert("Sign up successful! You can now log in.");
-                form.reset();
-            } else {
-                alert(`Sign up failed: ${result.message || 'Unknown error occurred.'}`);
-            }
-          } catch (error) {
-            alert(`Error during sign up: ${error.message}`); 
-          }
-
-        });
-      </script>
-    </body>
+    // Test localStorage on page load
+    window.onload = function() {
+      testLocalStorage();
+    };
+  </script>
+</body>
 </html>

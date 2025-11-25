@@ -81,6 +81,33 @@
       event.preventDefault();
       const authButtons = document.getElementById("authButtons");
       authButtons.style.display = authButtons.style.display === "none" ? "block" : "none";
+
+      // Check if user just registered (add this to your existing checkAuthStatus function)
+function checkRecentRegistration() {
+  const recentRegistration = localStorage.getItem('recentRegistration');
+  const registeredEmail = localStorage.getItem('registeredEmail');
+  
+  if (recentRegistration === 'true') {
+    // Show welcome message
+    alert(`Welcome! Account created successfully for ${registeredEmail}. Please sign in.`);
+    
+    // Clear the flag
+    localStorage.removeItem('recentRegistration');
+    localStorage.removeItem('registeredEmail');
+    
+    // Auto-show auth buttons
+    const authButtons = document.getElementById("authButtons");
+    const getStartedBtn = document.getElementById("getStartedBtn");
+    getStartedBtn.style.display = 'none';
+    authButtons.style.display = 'block';
+  }
+}
+
+// Call this in your DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', function() {
+  checkAuthStatus();
+  checkRecentRegistration();
+});
     });
   </script>
 
