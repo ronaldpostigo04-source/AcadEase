@@ -5,7 +5,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body {
-  background: #ffffff;
+  background: #b2d7b5;
   color: #1b4332;
   line-height: 1.6;
   overflow-x: hidden;
@@ -28,7 +28,7 @@ header h1 {
 nav a {
   margin: 0 15px;
   text-decoration: none;
-  color: #d8f3dc;
+  color: #c2f8ca;
   font-weight: bold;
   transition: 0.3s;
 }
@@ -58,7 +58,7 @@ nav a:hover {
   display: inline-block;
   margin-top: 30px;
   padding: 14px 28px;
-  background: white;
+  background: rgb(76, 177, 114);
   color: #1b4332;
   border-radius: 30px;
   font-weight: bold;
@@ -101,7 +101,7 @@ nav a:hover {
   text-align: center;
   padding: 12px 0;
   background: #1b4332;
-  color: white;
+  color: rgb(213, 245, 219);
   font-size: 16px;
   border-radius: 10px;
   text-decoration: none;
@@ -140,7 +140,7 @@ nav a:hover {
   padding: 0 20px;
 }
 .card {
-  background: #fff;
+  background: #dcf1c7;
   padding: 30px 20px;
   border-radius: 15px;
   box-shadow: 0 6px 15px rgba(0,0,0,0.1);
