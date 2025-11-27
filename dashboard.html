@@ -53,7 +53,7 @@
     .side-nav {
       position: fixed;
       top: 0;
-      right: -250px; /* Changed from left to right */
+      right: -250px;
       width: 250px;
       height: 100%;
       background: #1b4332;
@@ -64,7 +64,7 @@
     }
 
     .side-nav.active {
-      right: 0; /* Changed from left to right */
+      right: 0;
     }
 
     .side-nav a, .side-nav button {
@@ -250,6 +250,11 @@
     .calendar-day.today {
       background: #e8f5e8;
       border: 2px solid #40916c;
+    }
+
+    .calendar-day.has-assignment {
+      background: #fff9e6;
+      border: 2px solid #f0ad4e;
     }
 
     .day-number {
@@ -700,7 +705,9 @@
       padding: 30px;
       border-radius: 10px;
       width: 90%;
-      max-width: 500px;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
 
@@ -750,12 +757,290 @@
     .submission-link a:hover {
       text-decoration: underline;
     }
+
+    /* Join Code Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .modal h3 {
+      color: #1b4332;
+      margin-bottom: 20px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .modal-buttons button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #1b4332;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #6c757d;
+      color: white;
+    }
+
+    /* Participants List */
+    .participants-list {
+      margin-top: 20px;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .participant-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .participant-item:last-child {
+      border-bottom: none;
+    }
+
+    .participant-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #1b4332;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .participant-info {
+      flex: 1;
+    }
+
+    .participant-name {
+      font-weight: 500;
+      color: #1b4332;
+    }
+
+    .participant-role {
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    .participant-role.professor {
+      color: #d9534f;
+      font-weight: bold;
+    }
+
+    .participant-role.student {
+      color: #5bc0de;
+    }
+
+    .class-status {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .class-status.active {
+      background: #e8f5e8;
+      color: #1b4332;
+    }
+
+    .class-status.inactive {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    /* Event Details Modal */
+    .event-details {
+      margin-top: 15px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    .event-details h4 {
+      color: #1b4332;
+      margin-bottom: 10px;
+    }
+
+    .event-details p {
+      margin-bottom: 10px;
+    }
+
+    .event-details .event-type {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      color: white;
+      font-size: 0.8rem;
+    }
+
+    .event-details .event-type.assignment {
+      background: #d9534f;
+    }
+
+    .event-details .event-type.exam {
+      background: #f0ad4e;
+    }
+
+    .event-details .event-type.class {
+      background: #5bc0de;
+    }
+
+    .event-details .event-type.event {
+      background: #40916c;
+    }
+
+    /* File Upload Styles */
+    .file-upload {
+      margin-top: 15px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border: 2px dashed #ddd;
+    }
+
+    .file-upload input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .file-preview {
+      margin-top: 15px;
+    }
+
+    .file-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background: white;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .file-icon {
+      width: 40px;
+      height: 40px;
+      background: #1b4332;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+
+    .file-info {
+      flex: 1;
+    }
+
+    .file-name {
+      font-weight: 500;
+      color: #1b4332;
+    }
+
+    .file-size {
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    .file-actions {
+      display: flex;
+      gap: 5px;
+    }
+
+    .file-btn {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .file-btn.view {
+      background: #1b4332;
+      color: white;
+    }
+
+    .file-btn.download {
+      background: #40916c;
+      color: white;
+    }
+
+    .file-btn.delete {
+      background: #d9534f;
+      color: white;
+    }
+
+    /* File Type Colors */
+    .file-icon.pdf {
+      background: #d9534f;
+    }
+
+    .file-icon.doc, .file-icon.docx {
+      background: #1a73e8;
+    }
+
+    .file-icon.wps {
+      background: #f0ad4e;
+    }
+
+    .file-icon.txt {
+      background: #6c757d;
+    }
+
+    .file-icon.other {
+      background: #1b4332;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>AcadEase Dashboard</h1>
     <div class="user-info">
+      <span class="user-email" id="userEmail">student@example.com</span>
       <span class="menu-icon" onclick="toggleMenu()">☰</span>
     </div>
   </header>
@@ -788,7 +1073,7 @@
           <button onclick="nextMonth()">Next →</button>
         </div>
         <h3 id="currentMonthYear">Month Year</h3>
-        <button class="btn" onclick="openAddEventModal()">+ Add Event</button>
+        <button class="btn" onclick="openAddEventModal()">+ Add Assignment</button>
       </div>
       
       <div class="calendar-grid" id="calendarGrid">
@@ -890,16 +1175,25 @@
           </div>
           <div class="classroom-body">
             <div class="classroom-info">
-              <p><strong>Instructor:</strong>Prof. Jerome A Yanga.</p>
+              <p><strong>Instructor:</strong> Prof. Jerome A Yanga</p>
               <p><strong>Schedule:</strong> Tuesday, 7:30 AM</p>
               <p><strong>Next Session:</strong> Thursday, 7:30 PM</p>
+              <p><strong>Class Code:</strong> acadease123</p>
             </div>
+            
+            <div id="classStatus" class="class-status inactive">
+              You are not currently joined to this class
+            </div>
+            
             <div class="classroom-actions">
-              <button class="classroom-btn primary" onclick="joinClassroom('database')">Join Class</button>
-              <button class="classroom-btn secondary" onclick="viewMaterials('database')">Materials</button>
+              <button class="classroom-btn primary" onclick="openJoinClassModal()">Join Class</button>
+              <button class="classroom-btn secondary" onclick="toggleParticipants()">View Participants</button>
             </div>
-          </div>
-        </div>
+            
+            <div id="participantsList" class="participants-list" style="display: none;">
+              <h4>Class Participants</h4>
+              <!-- Participants will be loaded here -->
+            </div>
           </div>
         </div>
       </div>
@@ -1019,12 +1313,89 @@
     </div>
   </div>
 
+  <!-- Join Class Modal -->
+  <div class="modal" id="joinClassModal">
+    <div class="modal-content">
+      <h3>Join Web Development Class</h3>
+      <p>Enter the class code provided by your instructor to join this class.</p>
+      
+      <div class="form-group">
+        <label for="classCode">Class Code</label>
+        <input type="text" id="classCode" placeholder="Enter class code" required>
+      </div>
+      
+      <div class="modal-buttons">
+        <button type="button" class="btn-secondary" onclick="closeJoinClassModal()">Cancel</button>
+        <button type="button" class="btn-primary" onclick="joinClass()">Join Class</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Event Modal -->
+  <div class="modal" id="addEventModal">
+    <div class="modal-content">
+      <h3>Add Assignment to Calendar</h3>
+      <form id="eventForm">
+        <div class="form-group">
+          <label for="eventTitle">Assignment Title</label>
+          <input type="text" id="eventTitle" placeholder="Enter assignment title" required>
+        </div>
+        <div class="form-group">
+          <label for="eventDescription">Description</label>
+          <textarea id="eventDescription" placeholder="Enter assignment description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="eventDate">Due Date</label>
+          <input type="date" id="eventDate" required>
+        </div>
+        <div class="form-group">
+          <label for="eventType">Assignment Type</label>
+          <select id="eventType">
+            <option value="assignment">Assignment</option>
+            <option value="exam">Exam</option>
+            <option value="project">Project</option>
+            <option value="activity">Activity</option>
+          </select>
+        </div>
+        
+        <div class="file-upload">
+          <h4>Upload Files</h4>
+          <p>Upload assignment files (PDF, DOC, DOCX, WPS, TXT, etc.)</p>
+          <input type="file" id="fileInput" multiple accept=".pdf,.doc,.docx,.wps,.txt">
+          <div id="filePreview" class="file-preview">
+            <!-- File previews will appear here -->
+          </div>
+        </div>
+        
+        <div class="modal-buttons">
+          <button type="button" class="btn-secondary" onclick="closeAddEventModal()">Cancel</button>
+          <button type="submit" class="btn-primary">Add Assignment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Event Details Modal -->
+  <div class="modal" id="eventDetailsModal">
+    <div class="modal-content">
+      <h3 id="eventDetailsTitle">Assignment Details</h3>
+      <div id="eventDetailsContent">
+        <!-- Assignment details will be loaded here -->
+      </div>
+      <div class="modal-buttons">
+        <button type="button" class="btn-secondary" onclick="closeEventDetailsModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Calendar variables
     let currentDate = new Date();
     let currentMonth = currentDate.getMonth();
     let currentYear = currentDate.getFullYear();
     let currentAssignmentId = null;
+    let selectedDate = null;
+    let uploadedFiles = [];
 
     // Menu toggle function
     function toggleMenu() {
@@ -1054,6 +1425,11 @@
       if (sectionName === 'assignments') {
         displayAssignments();
       }
+      
+      // If showing classroom, load participants
+      if (sectionName === 'classroom') {
+        loadParticipants();
+      }
     }
 
     // Google Meet functions
@@ -1073,17 +1449,114 @@
     }
 
     // Classroom functions
-    function joinClassroom(classId) {
-      alert(`Joining ${classId} classroom...\n\nIn a real application, this would connect you to the virtual classroom.`);
+    function openJoinClassModal() {
+      document.getElementById('joinClassModal').classList.add('active');
     }
 
-    function viewMaterials(classId) {
-      alert(`Opening materials for ${classId}...\n\nIn a real application, this would show course materials and resources.`);
+    function closeJoinClassModal() {
+      document.getElementById('joinClassModal').classList.remove('active');
+      document.getElementById('classCode').value = '';
+    }
+
+    function joinClass() {
+      const classCode = document.getElementById('classCode').value;
+      const correctCode = 'acadease123';
+      
+      if (classCode === correctCode) {
+        // Get current user info
+        const userEmail = localStorage.getItem('userEmail') || 'student@example.com';
+        const userName = userEmail ? userEmail.split('@')[0] : 'Student';
+        
+        // Add user to participants list
+        const participants = JSON.parse(localStorage.getItem('classParticipants')) || [];
+        
+        // Check if user is already in the list
+        const existingUser = participants.find(p => p.email === userEmail);
+        
+        if (!existingUser) {
+          participants.push({
+            name: userName,
+            email: userEmail,
+            role: 'student',
+            joinedAt: new Date().toISOString()
+          });
+          
+          localStorage.setItem('classParticipants', JSON.stringify(participants));
+        }
+        
+        // Update UI
+        document.getElementById('classStatus').textContent = 'You have successfully joined this class';
+        document.getElementById('classStatus').className = 'class-status active';
+        
+        // Close modal and reload participants
+        closeJoinClassModal();
+        loadParticipants();
+        
+        alert('Successfully joined the Web Development class!');
+      } else {
+        alert('Invalid class code. Please check with your instructor and try again.');
+      }
+    }
+
+    function toggleParticipants() {
+      const participantsList = document.getElementById('participantsList');
+      if (participantsList.style.display === 'none') {
+        participantsList.style.display = 'block';
+        loadParticipants();
+      } else {
+        participantsList.style.display = 'none';
+      }
+    }
+
+    function loadParticipants() {
+      const participantsList = document.getElementById('participantsList');
+      const participants = JSON.parse(localStorage.getItem('classParticipants')) || [];
+      
+      // Check if current user is in the participants list
+      const userEmail = localStorage.getItem('userEmail') || 'student@example.com';
+      const isJoined = participants.some(p => p.email === userEmail);
+      
+      // Update class status
+      const classStatus = document.getElementById('classStatus');
+      if (isJoined) {
+        classStatus.textContent = 'You are currently joined to this class';
+        classStatus.className = 'class-status active';
+      } else {
+        classStatus.textContent = 'You are not currently joined to this class';
+        classStatus.className = 'class-status inactive';
+      }
+      
+      // If participants list is visible, update it
+      if (participantsList.style.display === 'block') {
+        if (participants.length === 0) {
+          participantsList.innerHTML = '<p>No participants yet. Be the first to join!</p>';
+          return;
+        }
+        
+        let participantsHTML = '<h4>Class Participants</h4>';
+        
+        participants.forEach(participant => {
+          const initial = participant.name.charAt(0).toUpperCase();
+          const roleClass = participant.role === 'professor' ? 'professor' : 'student';
+          
+          participantsHTML += `
+            <div class="participant-item">
+              <div class="participant-avatar">${initial}</div>
+              <div class="participant-info">
+                <div class="participant-name">${participant.name}</div>
+                <div class="participant-role ${roleClass}">${participant.role}</div>
+              </div>
+            </div>
+          `;
+        });
+        
+        participantsList.innerHTML = participantsHTML;
+      }
     }
 
     // Display user email
     function displayUserInfo() {
-      const userEmail = localStorage.getItem('userEmail');
+      const userEmail = localStorage.getItem('userEmail') || 'student@example.com';
       document.getElementById('userEmail').textContent = userEmail;
     }
 
@@ -1265,6 +1738,9 @@
         // Add events for this day
         addEventsToDay(dayElement, day);
         
+        // Add click event to open event details
+        dayElement.onclick = () => showEventsForDay(day);
+        
         calendarGrid.appendChild(dayElement);
       }
     }
@@ -1275,6 +1751,11 @@
       
       const dayEvents = events.filter(event => event.date === dateStr);
       
+      // Highlight days with assignments
+      if (dayEvents.length > 0) {
+        dayElement.classList.add('has-assignment');
+      }
+      
       dayEvents.forEach(event => {
         const eventElement = document.createElement('div');
         eventElement.className = `event ${event.type}`;
@@ -1282,6 +1763,58 @@
         eventElement.title = `${event.title}: ${event.description || 'No description'}`;
         dayElement.appendChild(eventElement);
       });
+    }
+    
+    function showEventsForDay(day) {
+      const dateStr = `${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+      const events = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+      const dayEvents = events.filter(event => event.date === dateStr);
+      
+      if (dayEvents.length === 0) {
+        alert(`No assignments scheduled for ${dateStr}`);
+        return;
+      }
+      
+      // Show assignment details in modal
+      document.getElementById('eventDetailsTitle').textContent = `Assignments for ${dateStr}`;
+      
+      let eventsHTML = '';
+      dayEvents.forEach(event => {
+        // Generate file list HTML
+        let fileListHTML = '';
+        if (event.files && event.files.length > 0) {
+          fileListHTML = '<h4>📎 Attached Files:</h4>';
+          event.files.forEach(file => {
+            const fileType = getFileType(file.name);
+            fileListHTML += `
+              <div class="file-item">
+                <div class="file-icon ${fileType}">${fileType.toUpperCase()}</div>
+                <div class="file-info">
+                  <div class="file-name">${file.name}</div>
+                  <div class="file-size">${formatFileSize(file.size)}</div>
+                </div>
+                <div class="file-actions">
+                  <button class="file-btn view" onclick="viewFile('${file.url}')">View</button>
+                  <button class="file-btn download" onclick="downloadFile('${file.url}', '${file.name}')">Download</button>
+                </div>
+              </div>
+            `;
+          });
+        }
+        
+        eventsHTML += `
+          <div class="event-details">
+            <h4>${event.title}</h4>
+            <p>${event.description || 'No description provided'}</p>
+            <p><strong>Type:</strong> <span class="event-type ${event.type}">${event.type}</span></p>
+            <p><strong>Due Date:</strong> ${event.date}</p>
+            ${fileListHTML}
+          </div>
+        `;
+      });
+      
+      document.getElementById('eventDetailsContent').innerHTML = eventsHTML;
+      document.getElementById('eventDetailsModal').classList.add('active');
     }
     
     function previousMonth() {
@@ -1303,8 +1836,159 @@
     }
     
     function openAddEventModal() {
-      alert("This would open a modal to add events. In a real application, you would implement this functionality.");
+      document.getElementById('addEventModal').classList.add('active');
+      
+      // Set today's date as default
+      const today = new Date();
+      const formattedDate = today.toISOString().split('T')[0];
+      document.getElementById('eventDate').value = formattedDate;
+      
+      // Clear previous file previews
+      document.getElementById('filePreview').innerHTML = '';
+      uploadedFiles = [];
+      
+      // Add file input change listener
+      document.getElementById('fileInput').addEventListener('change', handleFileUpload);
     }
+
+    function closeAddEventModal() {
+      document.getElementById('addEventModal').classList.remove('active');
+      document.getElementById('eventForm').reset();
+      uploadedFiles = [];
+    }
+
+    function closeEventDetailsModal() {
+      document.getElementById('eventDetailsModal').classList.remove('active');
+    }
+
+    // File upload functions
+    function handleFileUpload(e) {
+      const files = e.target.files;
+      const filePreview = document.getElementById('filePreview');
+      
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const fileType = getFileType(file.name);
+        
+        const fileItem = document.createElement('div');
+        fileItem.className = 'file-item';
+        fileItem.innerHTML = `
+          <div class="file-icon ${fileType}">${fileType.toUpperCase()}</div>
+          <div class="file-info">
+            <div class="file-name">${file.name}</div>
+            <div class="file-size">${formatFileSize(file.size)}</div>
+          </div>
+          <div class="file-actions">
+            <button class="file-btn delete" onclick="removeFile(${i})">Remove</button>
+          </div>
+        `;
+        
+        filePreview.appendChild(fileItem);
+        
+        // Store file data
+        uploadedFiles.push({
+          name: file.name,
+          size: file.size,
+          type: fileType,
+          file: file
+        });
+      }
+    }
+    
+    function removeFile(index) {
+      uploadedFiles.splice(index, 1);
+      // Refresh file preview
+      const filePreview = document.getElementById('filePreview');
+      filePreview.innerHTML = '';
+      
+      uploadedFiles.forEach((file, i) => {
+        const fileType = getFileType(file.name);
+        const fileItem = document.createElement('div');
+        fileItem.className = 'file-item';
+        fileItem.innerHTML = `
+          <div class="file-icon ${fileType}">${fileType.toUpperCase()}</div>
+          <div class="file-info">
+            <div class="file-name">${file.name}</div>
+            <div class="file-size">${formatFileSize(file.size)}</div>
+          </div>
+          <div class="file-actions">
+            <button class="file-btn delete" onclick="removeFile(${i})">Remove</button>
+          </div>
+        `;
+        filePreview.appendChild(fileItem);
+      });
+    }
+    
+    function getFileType(filename) {
+      const extension = filename.split('.').pop().toLowerCase();
+      if (extension === 'pdf') return 'pdf';
+      if (extension === 'doc' || extension === 'docx') return 'doc';
+      if (extension === 'wps') return 'wps';
+      if (extension === 'txt') return 'txt';
+      return 'other';
+    }
+    
+    function formatFileSize(bytes) {
+      if (bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+    
+    function viewFile(url) {
+      window.open(url, '_blank');
+    }
+    
+    function downloadFile(url, filename) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    // Handle event form submission
+    document.getElementById("eventForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const title = document.getElementById("eventTitle").value;
+      const description = document.getElementById("eventDescription").value;
+      const date = document.getElementById("eventDate").value;
+      const type = document.getElementById("eventType").value;
+      
+      const events = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+      
+      // Create file URLs for uploaded files
+      const filesWithUrls = uploadedFiles.map(file => {
+        return {
+          name: file.name,
+          size: file.size,
+          type: file.type,
+          url: URL.createObjectURL(file.file)
+        };
+      });
+      
+      events.push({
+        title,
+        description,
+        date,
+        type,
+        files: filesWithUrls
+      });
+      
+      localStorage.setItem('calendarEvents', JSON.stringify(events));
+      
+      // Reset form and close modal
+      document.getElementById("eventForm").reset();
+      closeAddEventModal();
+      
+      // Refresh calendar
+      generateCalendar();
+      
+      alert("Assignment added successfully!");
+    });
 
     // Logout function
     function logout() {
@@ -1316,7 +2000,9 @@
     // Check login status
     function checkLoginStatus() {
       if (localStorage.getItem('isLoggedIn') !== 'true') {
-        window.location.href = 'login.html';
+        // For demo purposes, we'll simulate a logged-in user
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userEmail', 'student@example.com');
       }
     }
 
@@ -1331,16 +2017,38 @@
         const today = new Date();
         const sampleEvents = [
           {
-            title: 'Math Quiz',
-            type: 'exam',
+            title: 'HTML/CSS Project',
+            type: 'assignment',
             date: `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${(today.getDate() + 2).toString().padStart(2, '0')}`,
-            description: 'Chapter 5-7'
+            description: 'Create a responsive portfolio website using HTML and CSS',
+            files: [
+              {
+                name: 'Project Guidelines.pdf',
+                size: 1024000,
+                type: 'pdf',
+                url: '#'
+              },
+              {
+                name: 'Sample Design.wps',
+                size: 512000,
+                type: 'wps',
+                url: '#'
+              }
+            ]
           },
           {
-            title: 'Science Project',
-            type: 'assignment',
-            date: `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${(today.getDate() + 5).toString().padStart(2, '0')}`,
-            description: 'Research paper on climate change'
+            title: 'Midterm Exam',
+            type: 'exam',
+            date: `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${(today.getDate() + 7).toString().padStart(2, '0')}`,
+            description: 'Covering chapters 1-5',
+            files: [
+              {
+                name: 'Study Guide.docx',
+                size: 2048000,
+                type: 'doc',
+                url: '#'
+              }
+            ]
           }
         ];
         localStorage.setItem('calendarEvents', JSON.stringify(sampleEvents));
@@ -1366,6 +2074,21 @@
         ];
         localStorage.setItem('assignments', JSON.stringify(sampleAssignments));
         displayAssignments();
+      }
+      
+      // Add professor to participants if not already there
+      const participants = JSON.parse(localStorage.getItem('classParticipants')) || [];
+      const professorExists = participants.some(p => p.role === 'professor');
+      
+      if (!professorExists) {
+        participants.push({
+          name: 'Prof. Jerome A Yanga',
+          email: 'prof.yanga@example.com',
+          role: 'professor',
+          joinedAt: new Date().toISOString()
+        });
+        
+        localStorage.setItem('classParticipants', JSON.stringify(participants));
       }
     };
   </script>
