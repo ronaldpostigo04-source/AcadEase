@@ -85,13 +85,6 @@
       background: #40916c;
     }
 
-    .nav-label {
-      font-size: 0.8rem;
-      color: #95d5b2;
-      padding: 5px 25px;
-      margin-top: 5px;
-    }
-
     .overlay {
       position: fixed;
       top: 0;
@@ -705,7 +698,7 @@
       padding: 30px;
       border-radius: 10px;
       width: 90%;
-      max-width: 600px;
+      max-width: 800px;
       max-height: 80vh;
       overflow-y: auto;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
@@ -756,62 +749,6 @@
 
     .submission-link a:hover {
       text-decoration: underline;
-    }
-
-    /* Join Code Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-    .modal-content {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 500px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-
-    .modal h3 {
-      color: #1b4332;
-      margin-bottom: 20px;
-    }
-
-    .modal-buttons {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .modal-buttons button {
-      padding: 8px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: #1b4332;
-      color: white;
-    }
-
-    .btn-secondary {
-      background: #6c757d;
-      color: white;
     }
 
     /* Participants List */
@@ -1034,6 +971,409 @@
     .file-icon.other {
       background: #1b4332;
     }
+
+    /* Output List Styles */
+    .output-list {
+      margin-top: 20px;
+    }
+
+    .output-item {
+      background: white;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-left: 4px solid #40916c;
+    }
+
+    .output-item h3 {
+      color: #1b4332;
+      margin-bottom: 10px;
+    }
+
+    .output-item p {
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .output-item .date {
+      color: #d9534f;
+      font-weight: bold;
+    }
+
+    /* Activity Section Styles */
+    .activity-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 20px;
+    }
+    
+    .activity-form-container {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .activity-list-container {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .activity-list {
+      max-height: 500px;
+      overflow-y: auto;
+      margin-top: 20px;
+    }
+    
+    .activity-item {
+      background: #f8f9fa;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-left: 4px solid #40916c;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .activity-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .activity-item h3 {
+      color: #1b4332;
+      margin-bottom: 10px;
+    }
+    
+    .activity-item p {
+      color: #666;
+      margin-bottom: 10px;
+    }
+    
+    .activity-item .date {
+      color: #d9534f;
+      font-weight: bold;
+    }
+    
+    .activity-item .type {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      color: white;
+      font-size: 0.8rem;
+      margin-top: 5px;
+    }
+    
+    .activity-item .type.assignment {
+      background: #d9534f;
+    }
+    
+    .activity-item .type.activity {
+      background: #5bc0de;
+    }
+    
+    .activity-item .type.project {
+      background: #f0ad4e;
+    }
+    
+    .activity-item .type.exam {
+      background: #40916c;
+    }
+    
+    .submission-section {
+      margin-top: 15px;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .submission-section h4 {
+      color: #1b4332;
+      margin-bottom: 10px;
+    }
+    
+    .submission-link {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 5px;
+      word-break: break-all;
+    }
+    
+    .submission-link a {
+      color: #1b4332;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    
+    .submission-link a:hover {
+      text-decoration: underline;
+    }
+    
+    .submission-status {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+    
+    .submission-status.submitted {
+      color: #28a745;
+    }
+    
+    .submission-status.not-submitted {
+      color: #dc3545;
+    }
+    
+    .submission-form {
+      margin-top: 15px;
+    }
+    
+    .submission-form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      resize: vertical;
+    }
+    
+    .submission-form button {
+      background: #1b4332;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .submission-form button:hover {
+      background: #2d6a4f;
+    }
+    
+    .empty-state {
+      text-align: center;
+      color: #666;
+      padding: 40px;
+      background: white;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 500px;
+    }
+
+    /* Professor View Styles */
+    .professor-view {
+      margin-top: 30px;
+      padding: 20px;
+      background: #e8f5e8;
+      border-radius: 10px;
+    }
+    
+    .professor-view h3 {
+      color: #1b4332;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .student-submissions {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .student-submission-card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .student-submission-card h4 {
+      color: #1b4332;
+      margin-bottom: 10px;
+    }
+    
+    .student-submission-card p {
+      color: #666;
+      margin-bottom: 10px;
+    }
+    
+    .student-submission-card .submission-link {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 5px;
+      word-break: break-all;
+    }
+    
+    .student-submission-card .submission-link a {
+      color: #1a73e8;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .student-submission-card .submission-link a:hover {
+      text-decoration: underline;
+    }
+    
+    .student-submission-card .submission-date {
+      color: #666;
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+    
+    .toggle-professor-view {
+      background: #1b4332;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .toggle-professor-view:hover {
+      background: #2d6a4f;
+    }
+    
+    .grade-section {
+      margin-top: 15px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    
+    .grade-section h4 {
+      color: #1b4332;
+      margin-bottom: 10px;
+    }
+    
+    .grade-form {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    
+    .grade-input {
+      width: 80px;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    
+    .grade-display {
+      margin-top: 10px;
+      padding: 10px;
+      background: white;
+      border-radius: 5px;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .grade-display h5 {
+      color: #1b4332;
+      margin-bottom: 5px;
+    }
+    
+    .grade-value {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #1b4332;
+    }
+    
+    .grade-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    
+    .grade-btn {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    
+    .grade-btn.primary {
+      background: #1b4332;
+      color: white;
+    }
+    
+    .grade-btn.secondary {
+      background: #6c757d;
+      color: white;
+    }
+
+    /* Student Submission Viewer Styles */
+    .submission-viewer {
+      margin-top: 20px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+    }
+    
+    .submission-viewer h4 {
+      color: #1b4332;
+      margin-bottom: 15px;
+    }
+    
+    .submission-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .submission-content h5 {
+      color: #1b4332;
+      margin-bottom: 10px;
+    }
+    
+    .submission-content p {
+      color: #666;
+      margin-bottom: 15px;
+    }
+    
+    .submission-preview {
+      margin-top: 15px;
+      padding: 15px;
+      background: #e8f5e8;
+      border-radius: 8px;
+    }
+    
+    .submission-preview h6 {
+      color: #1b4332;
+      margin-bottom: 10px;
+    }
+    
+    .file-preview-container {
+      margin-top: 10px;
+    }
+    
+    .embedded-content {
+      width: 100%;
+      height: 400px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    
+    .no-preview {
+      padding: 20px;
+      text-align: center;
+      color: #666;
+      background: white;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
@@ -1046,10 +1386,10 @@
   </header>
 
   <div class="side-nav" id="sideNav">
-    <a href="#" onclick="showSection('assignments')">📝 Assignment/Activity</a>
     <a href="#" onclick="showSection('courses')">📘 My Courses</a>
     <a href="#" onclick="showSection('classroom')">🏫 Classroom</a>
     <a href="#" onclick="showSection('calendar')">📅 Schedule</a>
+    <a href="#" onclick="showSection('activity')">📝 Activity</a>
     <a href="#" onclick="showSection('grades')">📊 Grades</a>
     <button onclick="logout()">🚪 Logout</button>
   </div>
@@ -1199,6 +1539,59 @@
       </div>
     </div>
 
+    <!-- Activity Section -->
+    <div class="section" id="activitySection">
+      <h2>Activities & Assignments</h2>
+      
+      <div class="activity-container">
+        <div class="activity-form-container">
+          <h3>Create New Activity/Assignment</h3>
+          <form id="activityForm">
+            <div class="form-group">
+              <label for="activityTitle">Title</label>
+              <input type="text" id="activityTitle" placeholder="Enter activity/assignment title" required>
+            </div>
+            <div class="form-group">
+              <label for="activityDescription">Description</label>
+              <textarea id="activityDescription" placeholder="Enter activity/assignment description" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="activityDate">Date of Submission</label>
+              <input type="date" id="activityDate" required>
+            </div>
+            <div class="form-group">
+              <label for="activityType">Type</label>
+              <select id="activityType">
+                <option value="activity">Activity</option>
+                <option value="assignment">Assignment</option>
+                <option value="project">Project</option>
+                <option value="exam">Exam</option>
+              </select>
+            </div>
+            
+            <button type="submit" class="btn" style="width: 100%;">Create Now</button>
+          </form>
+        </div>
+        
+        <div class="activity-list-container">
+          <h3>My Activities & Assignments</h3>
+          <div id="activityList" class="activity-list">
+            <!-- Activities will be loaded here -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Professor View -->
+      <div class="professor-view" id="professorView" style="display: none;">
+        <h3>Professor View - Student Submissions</h3>
+        <div id="studentSubmissions" class="student-submissions">
+          <!-- Student submissions will be loaded here -->
+        </div>
+      </div>
+      
+      <button class="toggle-professor-view" onclick="toggleProfessorView()">👨‍🏫 Toggle Professor View</button>
+    </div>
+
     <!-- Grades Section -->
     <div class="section" id="gradesSection">
       <h2>Academic Performance</h2>
@@ -1206,18 +1599,18 @@
       <div class="grades-summary">
         <div class="grade-card">
           <h4>Current GPA</h4>
-          <div class="grade-value">3.75</div>
-          <p>Out of 4.0</p>
+          <div class="grade-value">3.00</div>
+          <p>Out of 3.50</p>
         </div>
         <div class="grade-card">
           <h4>WEB DEVELOPMENT</h4>
-          <div class="grade-value">92%</div>
-          <p>Grade: A</p>
+          <div class="grade-value">100%</div>
+          <p>Grade: 1.00</p>
         </div>
         <div class="grade-card">
           <h4>Completed Credits</h4>
-          <div class="grade-value">45</div>
-          <p>Out of 120</p>
+          <div class="grade-value">60%</div>
+          <p>Out of 100</p>
         </div>
       </div>
       
@@ -1227,91 +1620,32 @@
             <th>Course</th>
             <th>Assignment</th>
             <th>Score</th>
-            <th>Total %</th>
+            <th>Total of 100%</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>WEB DEVELOPMENT</td>
             <td>HTML/CSS Project</td>
-            <td>100%</td>
-            <td>2025-01-15</td>
+            <td>40%</td>
+            <td>40</td>
           </tr>
           <tr>
             <td>WEB DEVELOPMENT</td>
             <td>Quiz/Activity</td>
-            <td>15%</td>
-            <td>2025-02-10</td>
+            <td>30%</td>
+            <td>30</td>
           </tr>
           <tr>
             <td>WEB DEVELOPMENT</td>
             <td>Midterm Exam</td>
             <td>30%</td>
-            <td>2025-03-05</td>
+            <td>30</td>
           </tr>
         </tbody>
       </table>
     </div>
-
-    <!-- Assignment/Activity Section -->
-    <div class="section" id="assignmentsSection">
-      <h2>Assignments & Activities</h2>
-      
-      <div class="assignment-form">
-        <h3>Create New Assignment</h3>
-        <form id="assignmentForm">
-          <div class="form-group">
-            <label for="assignmentTitle">Title</label>
-            <input type="text" id="assignmentTitle" placeholder="Enter assignment title" required>
-          </div>
-          <div class="form-group">
-            <label for="assignmentDescription">Description</label>
-            <textarea id="assignmentDescription" placeholder="Enter assignment description" rows="3"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="assignmentDeadline">Deadline</label>
-            <input type="date" id="assignmentDeadline" required>
-          </div>
-          <div class="form-group">
-            <label for="assignmentType">Type</label>
-            <select id="assignmentType">
-              <option value="assignment">Assignment</option>
-              <option value="activity">Activity</option>
-              <option value="project">Project</option>
-            </select>
-          </div>
-          <button type="submit" class="btn">Create Assignment</button>
-        </form>
-      </div>
-      
-      <div class="assignment-list" id="assignmentList">
-        <!-- Assignments will be loaded here -->
-      </div>
-    </div>
   </main>
-
-  <!-- Assignment Submission Modal -->
-  <div class="modal" id="submissionModal">
-    <div class="modal-content">
-      <h3 id="modalAssignmentTitle">Submit Assignment</h3>
-      <div class="form-group">
-        <label for="submissionLink">Assignment/Activity Link</label>
-        <input type="url" id="submissionLink" placeholder="https://your-assignment/activity." required>
-      </div>
-      
-      <div id="existingSubmission" style="display: none;">
-        <h4>Current Submission:</h4>
-        <div class="submission-link" id="currentSubmissionLink">
-          <!-- Current submission link will appear here -->
-        </div>
-      </div>
-      
-      <div class="modal-buttons">
-        <button type="button" class="btn-secondary" onclick="closeSubmissionModal()">Cancel</button>
-        <button type="button" class="btn-primary" onclick="submitAssignmentLink()">Submit Link</button>
-      </div>
-    </div>
-  </div>
 
   <!-- Join Class Modal -->
   <div class="modal" id="joinClassModal">
@@ -1388,14 +1722,77 @@
     </div>
   </div>
 
+  <!-- Activity Submission Modal -->
+  <div class="modal" id="activitySubmissionModal">
+    <div class="modal-content">
+      <h3 id="activitySubmissionTitle">Submit Your Work</h3>
+      <div id="activitySubmissionContent">
+        <!-- Activity details will be loaded here -->
+      </div>
+      
+      <div class="submission-section">
+        <h4>Submit Your Work</h4>
+        <p>You can submit your work by providing a link to your file (Google Drive, Dropbox, etc.) or uploading a file directly.</p>
+        
+        <div class="submission-form">
+          <textarea id="submissionLink" placeholder="Paste your submission link here (Google Drive, Dropbox, etc.)"></textarea>
+          <p>Or upload a file:</p>
+          <input type="file" id="submissionFile" accept=".pdf,.doc,.docx,.wps,.txt">
+          <button type="button" onclick="submitActivity()">Submit Work</button>
+        </div>
+      </div>
+      
+      <div class="modal-buttons">
+        <button type="button" class="btn-secondary" onclick="closeActivitySubmissionModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grade Submission Modal -->
+  <div class="modal" id="gradeSubmissionModal">
+    <div class="modal-content">
+      <h3 id="gradeSubmissionTitle">Grade Student Submission</h3>
+      <div id="gradeSubmissionContent">
+        <!-- Student submission details will be loaded here -->
+      </div>
+      
+      <div class="grade-section">
+        <h4>Grade This Submission</h4>
+        <div class="grade-form">
+          <input type="number" id="gradeInput" class="grade-input" placeholder="Score" min="0" max="100" required>
+          <span>/ 100</span>
+          <button type="button" class="grade-btn primary" onclick="submitGrade()">Submit Grade</button>
+        </div>
+      </div>
+      
+      <div class="modal-buttons">
+        <button type="button" class="btn-secondary" onclick="closeGradeSubmissionModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Student Submission Viewer Modal -->
+  <div class="modal" id="submissionViewerModal">
+    <div class="modal-content">
+      <h3 id="submissionViewerTitle">Student Submission</h3>
+      <div id="submissionViewerContent">
+        <!-- Student submission content will be loaded here -->
+      </div>
+      
+      <div class="modal-buttons">
+        <button type="button" class="btn-secondary" onclick="closeSubmissionViewerModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Calendar variables
     let currentDate = new Date();
     let currentMonth = currentDate.getMonth();
     let currentYear = currentDate.getFullYear();
-    let currentAssignmentId = null;
-    let selectedDate = null;
     let uploadedFiles = [];
+    let selectedActivityId = null;
+    let selectedSubmissionForGrading = null;
 
     // Menu toggle function
     function toggleMenu() {
@@ -1421,14 +1818,14 @@
         generateCalendar();
       }
       
-      // If showing assignments, display them
-      if (sectionName === 'assignments') {
-        displayAssignments();
-      }
-      
       // If showing classroom, load participants
       if (sectionName === 'classroom') {
         loadParticipants();
+      }
+      
+      // If showing activity, load activities
+      if (sectionName === 'activity') {
+        loadActivities();
       }
     }
 
@@ -1559,135 +1956,6 @@
       const userEmail = localStorage.getItem('userEmail') || 'student@example.com';
       document.getElementById('userEmail').textContent = userEmail;
     }
-
-    // Display assignments from localStorage
-    function displayAssignments() {
-      const container = document.getElementById("assignmentList");
-      const assignments = JSON.parse(localStorage.getItem("assignments")) || [];
-
-      if (assignments.length === 0) {
-        container.innerHTML = `
-          <div class="empty-state">
-            <h3>No assignments yet</h3>
-            <p>Create your first assignment to get started!</p>
-          </div>
-        `;
-        return;
-      }
-
-      container.innerHTML = '';
-      assignments.forEach((assignment, index) => {
-        const assignmentElement = document.createElement('div');
-        assignmentElement.className = 'assignment-item';
-        assignmentElement.setAttribute('data-id', index);
-        assignmentElement.onclick = () => openSubmissionModal(index);
-        
-        const submissionStatus = assignment.submissionLink ? 
-          `<div class="submission-status submitted">✓ Submitted</div>` :
-          `<div class="submission-status not-submitted">✗ Not Submitted</div>`;
-        
-        assignmentElement.innerHTML = `
-          <h3>${assignment.title}</h3>
-          <p>${assignment.description}</p>
-          <p><strong>Type:</strong> ${assignment.type}</p>
-          <strong class="deadline">Deadline: ${assignment.deadline}</strong>
-          ${submissionStatus}
-        `;
-        container.appendChild(assignmentElement);
-      });
-    }
-
-    // Open submission modal
-    function openSubmissionModal(assignmentId) {
-      const assignments = JSON.parse(localStorage.getItem("assignments")) || [];
-      const assignment = assignments[assignmentId];
-      
-      if (!assignment) return;
-      
-      currentAssignmentId = assignmentId;
-      document.getElementById('modalAssignmentTitle').textContent = `Submit: ${assignment.title}`;
-      document.getElementById('submissionLink').value = assignment.submissionLink || '';
-      
-      // Show existing submission if available
-      const existingSubmissionDiv = document.getElementById('existingSubmission');
-      const currentSubmissionLinkDiv = document.getElementById('currentSubmissionLink');
-      
-      if (assignment.submissionLink) {
-        existingSubmissionDiv.style.display = 'block';
-        currentSubmissionLinkDiv.innerHTML = `<a href="${assignment.submissionLink}" target="_blank">${assignment.submissionLink}</a>`;
-      } else {
-        existingSubmissionDiv.style.display = 'none';
-      }
-      
-      document.getElementById('submissionModal').classList.add('active');
-    }
-
-    // Close submission modal
-    function closeSubmissionModal() {
-      document.getElementById('submissionModal').classList.remove('active');
-      currentAssignmentId = null;
-    }
-
-    // Submit assignment link
-    function submitAssignmentLink() {
-      const link = document.getElementById('submissionLink').value;
-      
-      if (!link) {
-        alert('Please enter a valid link');
-        return;
-      }
-      
-      // Validate URL format
-      try {
-        new URL(link);
-      } catch (e) {
-        alert('Please enter a valid URL');
-        return;
-      }
-      
-      const assignments = JSON.parse(localStorage.getItem("assignments")) || [];
-      
-      if (currentAssignmentId !== null && assignments[currentAssignmentId]) {
-        assignments[currentAssignmentId].submissionLink = link;
-        localStorage.setItem("assignments", JSON.stringify(assignments));
-        
-        // Update display
-        displayAssignments();
-        closeSubmissionModal();
-        
-        alert('Assignment link submitted successfully!');
-      }
-    }
-
-    // Handle assignment form submission
-    document.getElementById("assignmentForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      
-      const title = document.getElementById("assignmentTitle").value;
-      const description = document.getElementById("assignmentDescription").value;
-      const deadline = document.getElementById("assignmentDeadline").value;
-      const type = document.getElementById("assignmentType").value;
-      
-      const assignments = JSON.parse(localStorage.getItem("assignments")) || [];
-      
-      assignments.push({
-        title,
-        description,
-        deadline,
-        type,
-        submissionLink: null
-      });
-      
-      localStorage.setItem("assignments", JSON.stringify(assignments));
-      
-      // Reset form
-      document.getElementById("assignmentForm").reset();
-      
-      // Refresh assignments list
-      displayAssignments();
-      
-      alert("Assignment created successfully!");
-    });
 
     // Calendar functions
     function generateCalendar() {
@@ -1990,6 +2258,416 @@
       alert("Assignment added successfully!");
     });
 
+    // Activity functions
+    function loadActivities() {
+      const activityList = document.getElementById('activityList');
+      const activities = JSON.parse(localStorage.getItem('studentActivities')) || [];
+      
+      if (activities.length === 0) {
+        activityList.innerHTML = `
+          <div class="empty-state">
+            <h3>No Activities Yet</h3>
+            <p>Create your first activity or assignment using the form on the left.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      let activitiesHTML = '';
+      
+      activities.forEach(activity => {
+        const submissionStatus = activity.submission ? 'submitted' : 'not-submitted';
+        const submissionText = activity.submission ? 'Submitted' : 'Not Submitted';
+        
+        // Check if there's a grade for this activity
+        const gradeDisplay = activity.grade ? `
+          <div class="grade-display">
+            <h5>Your Grade:</h5>
+            <div class="grade-value">${activity.grade.score}/100</div>
+            ${activity.grade.feedback ? `<p><strong>Feedback:</strong> ${activity.grade.feedback}</p>` : ''}
+            <p><small>Graded on: ${new Date(activity.grade.gradedAt).toLocaleString()}</small></p>
+          </div>
+        ` : '';
+        
+        activitiesHTML += `
+          <div class="activity-item" onclick="openActivitySubmission('${activity.id}')">
+            <h3>${activity.title}</h3>
+            <p>${activity.description || 'No description provided'}</p>
+            <p class="date">Due: ${activity.date}</p>
+            <span class="type ${activity.type}">${activity.type}</span>
+            <div class="submission-status ${submissionStatus}">${submissionText}</div>
+            
+            ${activity.submission ? `
+              <div class="submission-link">
+                <strong>Your Submission:</strong><br>
+                <a href="${activity.submission.link}" target="_blank">${activity.submission.link}</a>
+              </div>
+            ` : ''}
+            
+            ${gradeDisplay}
+          </div>
+        `;
+      });
+      
+      activityList.innerHTML = activitiesHTML;
+    }
+    
+    function openActivitySubmission(activityId) {
+      selectedActivityId = activityId;
+      const activities = JSON.parse(localStorage.getItem('studentActivities')) || [];
+      const activity = activities.find(a => a.id === activityId);
+      
+      if (!activity) return;
+      
+      document.getElementById('activitySubmissionTitle').textContent = activity.title;
+      
+      let activityHTML = `
+        <div class="event-details">
+          <h4>${activity.title}</h4>
+          <p>${activity.description || 'No description provided'}</p>
+          <p><strong>Type:</strong> <span class="event-type ${activity.type}">${activity.type}</span></p>
+          <p><strong>Due Date:</strong> ${activity.date}</p>
+        </div>
+      `;
+      
+      document.getElementById('activitySubmissionContent').innerHTML = activityHTML;
+      document.getElementById('activitySubmissionModal').classList.add('active');
+    }
+    
+    function closeActivitySubmissionModal() {
+      document.getElementById('activitySubmissionModal').classList.remove('active');
+      selectedActivityId = null;
+    }
+    
+    function submitActivity() {
+      if (!selectedActivityId) return;
+      
+      const submissionLink = document.getElementById('submissionLink').value;
+      const submissionFile = document.getElementById('submissionFile').files[0];
+      
+      if (!submissionLink && !submissionFile) {
+        alert('Please provide either a submission link or upload a file.');
+        return;
+      }
+      
+      const activities = JSON.parse(localStorage.getItem('studentActivities')) || [];
+      const activityIndex = activities.findIndex(a => a.id === selectedActivityId);
+      
+      if (activityIndex === -1) return;
+      
+      let submissionData = {
+        submittedAt: new Date().toISOString(),
+        submittedBy: localStorage.getItem('userEmail') || 'student@example.com'
+      };
+      
+      if (submissionLink) {
+        submissionData.link = submissionLink;
+      }
+      
+      if (submissionFile) {
+        // In a real application, you would upload the file to a server
+        // For this demo, we'll just store the file name
+        submissionData.fileName = submissionFile.name;
+        submissionData.fileSize = submissionFile.size;
+        submissionData.fileType = getFileType(submissionFile.name);
+      }
+      
+      activities[activityIndex].submission = submissionData;
+      
+      localStorage.setItem('studentActivities', JSON.stringify(activities));
+      
+      // Reset form and close modal
+      document.getElementById('submissionLink').value = '';
+      document.getElementById('submissionFile').value = '';
+      closeActivitySubmissionModal();
+      
+      // Reload activities
+      loadActivities();
+      
+      alert('Your work has been submitted successfully!');
+    }
+
+    // Handle activity form submission
+    document.getElementById("activityForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const title = document.getElementById("activityTitle").value;
+      const description = document.getElementById("activityDescription").value;
+      const date = document.getElementById("activityDate").value;
+      const type = document.getElementById("activityType").value;
+      
+      const activities = JSON.parse(localStorage.getItem('studentActivities')) || [];
+      
+      // Generate a unique ID for the activity
+      const activityId = 'activity_' + Date.now();
+      
+      activities.push({
+        id: activityId,
+        title,
+        description,
+        date,
+        type,
+        createdAt: new Date().toISOString(),
+        submission: null,
+        grade: null
+      });
+      
+      localStorage.setItem('studentActivities', JSON.stringify(activities));
+      
+      // Reset form
+      document.getElementById("activityForm").reset();
+      
+      // Set today's date as default
+      const today = new Date();
+      const formattedDate = today.toISOString().split('T')[0];
+      document.getElementById("activityDate").value = formattedDate;
+      
+      // Reload activities
+      loadActivities();
+      
+      alert("Activity created successfully!");
+    });
+
+    // Professor View Functions
+    function toggleProfessorView() {
+      const professorView = document.getElementById('professorView');
+      if (professorView.style.display === 'none') {
+        professorView.style.display = 'block';
+        loadStudentSubmissions();
+      } else {
+        professorView.style.display = 'none';
+      }
+    }
+    
+    function loadStudentSubmissions() {
+      const studentSubmissions = document.getElementById('studentSubmissions');
+      const activities = JSON.parse(localStorage.getItem('studentActivities')) || [];
+      const participants = JSON.parse(localStorage.getItem('classParticipants')) || [];
+      
+      // Get all students from participants
+      const students = participants.filter(p => p.role === 'student');
+      
+      if (students.length === 0) {
+        studentSubmissions.innerHTML = '<p>No students have joined the class yet.</p>';
+        return;
+      }
+      
+      let submissionsHTML = '';
+      
+      students.forEach(student => {
+        // Find activities submitted by this student
+        const studentActivities = activities.filter(activity => 
+          activity.submission && activity.submission.submittedBy === student.email
+        );
+        
+        if (studentActivities.length === 0) {
+          submissionsHTML += `
+            <div class="student-submission-card">
+              <h4>${student.name}</h4>
+              <p>No submissions yet</p>
+            </div>
+          `;
+        } else {
+          studentActivities.forEach(activity => {
+            const gradeDisplay = activity.grade ? `
+              <div class="grade-display">
+                <h5>Grade: ${activity.grade.score}/100</h5>
+                ${activity.grade.feedback ? `<p><strong>Feedback:</strong> ${activity.grade.feedback}</p>` : ''}
+                <p><small>Graded on: ${new Date(activity.grade.gradedAt).toLocaleString()}</small></p>
+              </div>
+            ` : '<p>Not graded yet</p>';
+            
+            submissionsHTML += `
+              <div class="student-submission-card">
+                <h4>${student.name}</h4>
+                <p><strong>Activity:</strong> ${activity.title}</p>
+                <p><strong>Type:</strong> ${activity.type}</p>
+                <p><strong>Due Date:</strong> ${activity.date}</p>
+                
+                ${activity.submission.link ? `
+                  <div class="submission-link">
+                    <strong>Submission Link:</strong><br>
+                    <a href="${activity.submission.link}" target="_blank">${activity.submission.link}</a>
+                  </div>
+                ` : ''}
+                
+                ${activity.submission.fileName ? `
+                  <div class="submission-link">
+                    <strong>Submitted File:</strong><br>
+                    ${activity.submission.fileName} (${formatFileSize(activity.submission.fileSize)})
+                  </div>
+                ` : ''}
+                
+                <div class="submission-date">
+                  Submitted on: ${new Date(activity.submission.submittedAt).toLocaleString()}
+                </div>
+                
+                ${gradeDisplay}
+                
+                <div class="grade-actions">
+                  <button class="grade-btn primary" onclick="openGradeSubmission('${activity.id}', '${student.email}')">
+                    ${activity.grade ? 'Update Grade' : 'Add Grade'}
+                  </button>
+                  <button class="grade-btn secondary" onclick="viewStudentSubmission('${activity.id}', '${student.email}')">
+                    View Submission
+                  </button>
+                </div>
+              </div>
+            `;
+          });
+        }
+      });
+      
+      studentSubmissions.innerHTML = submissionsHTML;
+    }
+    
+    function openGradeSubmission(activityId, studentEmail) {
+      selectedSubmissionForGrading = { activityId, studentEmail };
+      const activities = JSON.parse(localStorage.getItem('studentActivities')) || [];
+      const activity = activities.find(a => a.id === activityId && a.submission.submittedBy === studentEmail);
+      
+      if (!activity) return;
+      
+      document.getElementById('gradeSubmissionTitle').textContent = `Grade Submission - ${activity.title}`;
+      
+      let submissionHTML = `
+        <div class="event-details">
+          <h4>${activity.title}</h4>
+          <p><strong>Student:</strong> ${studentEmail}</p>
+          <p><strong>Type:</strong> ${activity.type}</p>
+          <p><strong>Due Date:</strong> ${activity.date}</p>
+          
+          ${activity.submission.link ? `
+            <div class="submission-link">
+              <strong>Submission Link:</strong><br>
+              <a href="${activity.submission.link}" target="_blank">${activity.submission.link}</a>
+            </div>
+          ` : ''}
+          
+          ${activity.submission.fileName ? `
+            <div class="submission-link">
+              <strong>Submitted File:</strong><br>
+              ${activity.submission.fileName} (${formatFileSize(activity.submission.fileSize)})
+            </div>
+          ` : ''}
+        </div>
+      `;
+      
+      // Pre-fill grade if already graded
+      if (activity.grade) {
+        document.getElementById('gradeInput').value = activity.grade.score;
+      } else {
+        document.getElementById('gradeInput').value = '';
+      }
+      
+      document.getElementById('gradeSubmissionContent').innerHTML = submissionHTML;
+      document.getElementById('gradeSubmissionModal').classList.add('active');
+    }
+    
+    function closeGradeSubmissionModal() {
+      document.getElementById('gradeSubmissionModal').classList.remove('active');
+      selectedSubmissionForGrading = null;
+    }
+    
+    function submitGrade() {
+      if (!selectedSubmissionForGrading) return;
+      
+      const gradeInput = document.getElementById('gradeInput');
+      const score = parseInt(gradeInput.value);
+      
+      if (isNaN(score) || score < 0 || score > 100) {
+        alert('Please enter a valid score between 0 and 100.');
+        return;
+      }
+      
+      const activities = JSON.parse(localStorage.getItem('studentActivities')) || [];
+      const activityIndex = activities.findIndex(a => 
+        a.id === selectedSubmissionForGrading.activityId && 
+        a.submission.submittedBy === selectedSubmissionForGrading.studentEmail
+      );
+      
+      if (activityIndex === -1) return;
+      
+      activities[activityIndex].grade = {
+        score: score,
+        gradedAt: new Date().toISOString(),
+        gradedBy: localStorage.getItem('userEmail') || 'professor@example.com'
+      };
+      
+      localStorage.setItem('studentActivities', JSON.stringify(activities));
+      
+      // Close modal and reload
+      closeGradeSubmissionModal();
+      loadStudentSubmissions();
+      
+      alert('Grade submitted successfully!');
+    }
+    
+    function viewStudentSubmission(activityId, studentEmail) {
+      const activities = JSON.parse(localStorage.getItem('studentActivities')) || [];
+      const activity = activities.find(a => a.id === activityId && a.submission.submittedBy === studentEmail);
+      
+      if (!activity || !activity.submission) return;
+      
+      document.getElementById('submissionViewerTitle').textContent = `Submission: ${activity.title}`;
+      
+      let submissionContentHTML = `
+        <div class="submission-viewer">
+          <h4>Student Submission Details</h4>
+          <div class="submission-content">
+            <h5>${activity.title}</h5>
+            <p><strong>Student:</strong> ${studentEmail}</p>
+            <p><strong>Type:</strong> ${activity.type}</p>
+            <p><strong>Due Date:</strong> ${activity.date}</p>
+            <p><strong>Submitted on:</strong> ${new Date(activity.submission.submittedAt).toLocaleString()}</p>
+            
+            ${activity.description ? `<p><strong>Description:</strong> ${activity.description}</p>` : ''}
+          </div>
+          
+          <div class="submission-preview">
+            <h6>Submitted Work</h6>
+            
+            ${activity.submission.link ? `
+              <div class="file-preview-container">
+                <p><strong>Submission Link:</strong></p>
+                <div class="submission-link">
+                  <a href="${activity.submission.link}" target="_blank">${activity.submission.link}</a>
+                </div>
+                <div class="embedded-content">
+                  <iframe src="${activity.submission.link}" width="100%" height="100%" frameborder="0"></iframe>
+                </div>
+              </div>
+            ` : ''}
+            
+            ${activity.submission.fileName ? `
+              <div class="file-preview-container">
+                <p><strong>Submitted File:</strong> ${activity.submission.fileName}</p>
+                <div class="no-preview">
+                  <p>File: ${activity.submission.fileName}</p>
+                  <p>Size: ${formatFileSize(activity.submission.fileSize)}</p>
+                  <p>Type: ${activity.submission.fileType}</p>
+                  <p><em>Note: In a real application, this would display the file content</em></p>
+                </div>
+              </div>
+            ` : ''}
+            
+            ${!activity.submission.link && !activity.submission.fileName ? `
+              <div class="no-preview">
+                <p>No submission content available to preview.</p>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+      
+      document.getElementById('submissionViewerContent').innerHTML = submissionContentHTML;
+      document.getElementById('submissionViewerModal').classList.add('active');
+    }
+    
+    function closeSubmissionViewerModal() {
+      document.getElementById('submissionViewerModal').classList.remove('active');
+    }
+
     // Logout function
     function logout() {
       localStorage.removeItem('isLoggedIn');
@@ -2010,7 +2688,6 @@
     window.onload = function() {
       checkLoginStatus();
       displayUserInfo();
-      displayAssignments();
       
       // Add sample events if none exist
       if (!localStorage.getItem('calendarEvents')) {
@@ -2054,28 +2731,6 @@
         localStorage.setItem('calendarEvents', JSON.stringify(sampleEvents));
       }
       
-      // Add sample assignments if none exist
-      if (!localStorage.getItem('assignments') || JSON.parse(localStorage.getItem('assignments')).length === 0) {
-        const sampleAssignments = [
-          {
-            title: 'HTML/CSS Portfolio',
-            description: 'Create a personal portfolio website using HTML and CSS',
-            deadline: '2025-02-15',
-            type: 'project',
-            submissionLink: null
-          },
-          {
-            title: 'JavaScript Functions Exercise',
-            description: 'Complete the JavaScript functions practice problems',
-            deadline: '2025-02-10',
-            type: 'assignment',
-            submissionLink: null
-          }
-        ];
-        localStorage.setItem('assignments', JSON.stringify(sampleAssignments));
-        displayAssignments();
-      }
-      
       // Add professor to participants if not already there
       const participants = JSON.parse(localStorage.getItem('classParticipants')) || [];
       const professorExists = participants.some(p => p.role === 'professor');
@@ -2090,6 +2745,11 @@
         
         localStorage.setItem('classParticipants', JSON.stringify(participants));
       }
+      
+      // Set today's date as default for activity form
+      const today = new Date();
+      const formattedDate = today.toISOString().split('T')[0];
+      document.getElementById("activityDate").value = formattedDate;
     };
   </script>
 </body>
