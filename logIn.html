@@ -178,6 +178,16 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
+
+    .debug-info {
+      background: #fff3cd;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+      font-size: 0.8rem;
+      color: #856404;
+      text-align: left;
+    }
   </style>
 </head>
 <body>
@@ -185,6 +195,12 @@
     <div class="form-box">
       <div class="logo">AcadEase</div>
       <h2>Login to Your Account</h2>
+      
+      <div class="demo-info">
+        <h3>📝 Demo Accounts (from Sign-up)</h3>
+        <p>Use any email/password you registered with</p>
+      </div>
+      
       <div id="message" class="message"></div>
       
       <form id="loginForm">
@@ -205,7 +221,16 @@
         </div>
       </form>
       
+      <!-- Debug Info -->
+      <div class="debug-info" id="debugInfo">
+        <strong>Debug Info:</strong><br>
+        Checking localStorage...
+      </div>
+      
       <a href="index.html">← Back to Home</a>
+      <div style="margin-top: 10px;">
+        <a href="signup.html">Don't have an account? Sign up</a>
+      </div>
     </div>
     
     <div class="footer">
@@ -214,6 +239,35 @@
   </div>
 
   <script>
+    // Test localStorage
+    function testLocalStorage() {
+      try {
+        localStorage.setItem('test', 'test');
+        const result = localStorage.getItem('test');
+        localStorage.removeItem('test');
+        return result === 'test';
+      } catch (e) {
+        return false;
+      }
+    }
+
+    // Show stored users for debugging
+    function showStoredUsers() {
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      const debugEl = document.getElementById('debugInfo');
+      
+      if (users.length === 0) {
+        debugEl.innerHTML = '<strong>Debug Info:</strong><br>❌ No users found in storage. <a href="signup.html">Sign up first</a>';
+      } else {
+        let userList = '<strong>Stored Users (' + users.length + '):</strong><br>';
+        users.forEach(user => {
+          userList += `✓ ${user.name} (${user.email}) - ${user.userType}<br>`;
+        });
+        debugEl.innerHTML = userList;
+      }
+    }
+
+    // Login function
     document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault(); 
       
@@ -233,16 +287,21 @@
       
       // Simulate API call delay
       setTimeout(() => {
-        // Demo validation with your credentials
-        if (email === "AcadEase123@gmail.com" && password === "acadease123") {
+        // Get users from localStorage
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        
+        // Find user with matching email and password
+        const user = users.find(u => u.email === email && u.password === password);
+        
+        if (user) {
           // Show success message
-          messageEl.textContent = "Login successful! Redirecting to dashboard...";
+          messageEl.textContent = `Welcome back, ${user.name}! Redirecting to dashboard...`;
           messageEl.className = "message success";
           messageEl.style.display = "block";
           
           // Store login status in localStorage
           localStorage.setItem('isLoggedIn', 'true');
-          localStorage.setItem('userEmail', email);
+          localStorage.setItem('currentUser', JSON.stringify(user));
           
           // Redirect after showing success message
           setTimeout(() => {
@@ -250,7 +309,7 @@
           }, 1500);
         } else {
           // Show error message
-          messageEl.textContent = "Invalid email or password. Please try again.";
+          messageEl.textContent = "Invalid email or password. Please try again or sign up.";
           messageEl.className = "message error";
           messageEl.style.display = "block";
           
@@ -260,19 +319,27 @@
           // Hide loading, show login button again
           loading.style.display = "none";
           loginButton.style.display = "block";
+          
+          // Update debug info
+          showStoredUsers();
         }
-      }, 1000); // Simulate 1 second authentication delay
+      }, 1000);
     });
 
-    // Check if user is already logged in (optional - remove if you want users to always login)
+    // On page load
     window.onload = function() {
-      // If you want to keep users logged in, uncomment the line below
+      if (!testLocalStorage()) {
+        document.getElementById('debugInfo').innerHTML = 
+          '❌ localStorage is not working. Please check browser settings.';
+        return;
+      }
+      
+      showStoredUsers();
+      
+      // Optional: Auto-redirect if already logged in
       // if (localStorage.getItem('isLoggedIn') === 'true') {
       //   window.location.href = "dashboard.html";
       // }
-      
-      // For demo purposes, let's clear any existing login status to force fresh login
-      // localStorage.removeItem('isLoggedIn');
     };
   </script>
 </body>
