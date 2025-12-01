@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "acadease-64c51"
-  }
+  },
+  "targets": {
+    "acadease-64c51": {
+      "hosting": {
+        "acadease-64c51": [
+          "acadease-64c51"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
