@@ -20,26 +20,17 @@ document.querySelectorAll('.section, .card').forEach(el => observer.observe(el))
 // Test if a specific user can login
 testLogin("test@example.com", "password123");
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// REPLACE YOUR OLD CONFIG WITH THIS:
 const firebaseConfig = {
-  apiKey: "AIzaSyB-a3J3dzyG_e4TipaUDRNuWBcH3YM0bVo",
-  authDomain: "acadease-bdf1a.firebaseapp.com",
-  projectId: "acadease-bdf1a",
-  storageBucket: "acadease-bdf1a.firebasestorage.app",
-  messagingSenderId: "1014553842484",
-  appId: "1:1014553842484:web:479ff337b2ccdbf2214b61",
-  measurementId: "G-2T9MFXHJJ4"
+    apiKey: "AIzaSy...",  // copy exact from console
+    authDomain: "acadease-64c51.firebaseapp.com",  // importante to!
+    projectId: "acadease-64c51",
+    storageBucket: "acadease-64c51.appspot.com",
+    messagingSenderId: "775178252024",
+    appId: "1:775178252024:web:abd2426e9f8e4775d6d4"
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 import { db } from './firebase-config.js';
@@ -76,3 +67,16 @@ window.getUsers = getData;
 
 // Initialize
 getData();
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+// Check authentication state
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        console.log("User logged in:", user.email);
+    } else {
+        console.log("User logged out");
+    }
+});
