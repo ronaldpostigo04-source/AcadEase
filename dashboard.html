@@ -1514,7 +1514,6 @@
           </div>
           <div class="classroom-body">
             <div class="classroom-info">
-              <p><strong>Instructor:</strong> Prof. Jerome A Yanga</p>
               <p><strong>Schedule:</strong> Tuesday, 7:30 AM</p>
               <p><strong>Next Session:</strong> Thursday, 7:30 PM</p>
               <p><strong>Class Code:</strong> acadease123</p>
@@ -1555,7 +1554,7 @@
               <textarea id="activityDescription" placeholder="Enter activity/assignment description" rows="3"></textarea>
             </div>
             <div class="form-group">
-              <label for="activityDate">Date of Submission</label>
+              <label for="activityDate">Date of Submitted</label>
               <input type="date" id="activityDate" required>
             </div>
             <div class="form-group">
@@ -1563,8 +1562,6 @@
               <select id="activityType">
                 <option value="activity">Activity</option>
                 <option value="assignment">Assignment</option>
-                <option value="project">Project</option>
-                <option value="exam">Exam</option>
               </select>
             </div>
             
@@ -1685,16 +1682,14 @@
           <label for="eventType">Assignment Type</label>
           <select id="eventType">
             <option value="assignment">Assignment</option>
-            <option value="exam">Exam</option>
-            <option value="project">Project</option>
             <option value="activity">Activity</option>
           </select>
         </div>
         
         <div class="file-upload">
           <h4>Upload Files</h4>
-          <p>Upload assignment files (PDF, DOC, DOCX, WPS, TXT, etc.)</p>
-          <input type="file" id="fileInput" multiple accept=".pdf,.doc,.docx,.wps,.txt">
+          <p>Upload assignment files (PDF, DOC, WPS, TXT, etc.)</p>
+          <input type="file" id="fileInput" multiple accept=".pdf,.doc,.wps,.txt">
           <div id="filePreview" class="file-preview">
             <!-- File previews will appear here -->
           </div>
