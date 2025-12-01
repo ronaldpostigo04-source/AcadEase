@@ -57,11 +57,40 @@
       </div>
       <div class="card">
         <h3>🔔 Reminders & Alerts</h3>
-        <p>Get real-time reminders so you’ll never miss a deadline again.</p>
+        <p>Get real-time reminders so you'll never miss a deadline again.</p>
       </div>
       <div class="card">
         <h3>👩‍🏫 Teacher-Student Portal</h3>
         <p>Seamless communication and task management between teachers and students.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- New Mission and Vision Cards Section -->
+  <section id="mission-vision" class="section">
+    <h2>Our Mission & Vision</h2>
+    <div class="features mission-vision-cards">
+      <div class="card mission-card">
+        <h3>Our Mission</h3>
+        <p>AcadEase simplifies academic organization for students and teachers. We provide tools to manage assignments, 
+          track deadlines, and improve communication—making school life less stressful and more productive..</p>
+        <div class="mission-list">
+          <p><span>✓</span> Simplify academic management</p>
+          <p><span>✓</span> Enhance teacher-student communication</p>
+          <p><span>✓</span> Promote organization skills</p>
+          <p><span>✓</span> Provide accessible tools for all</p>
+        </div>
+      </div>
+      
+      <div class="card vision-card">
+        <h3>Our Vision</h3>
+        <p>We aim to be the go-to platform for academic management in every school. Our goal is to help students achieve 
+          better results and teachers become more effective educators through smart organization.</p>
+        <div class="vision-list">
+          <p><span>★</span> Help students get better grades</p>
+          <p><span>★</span> Bridge technology and education</p>
+          <p><span>★</span> Create supportive learning communities</p>
+        </div>
       </div>
     </div>
   </section>
@@ -75,39 +104,32 @@
     <p>© 2025 AcadEase. All Rights Reserved.</p>
   </footer>
 
-
   <script>
     document.getElementById("getStartedBtn").addEventListener("click", function(event) {
       event.preventDefault();
       const authButtons = document.getElementById("authButtons");
       authButtons.style.display = authButtons.style.display === "none" ? "block" : "none";
 
-      // Check if user just registered (add this to your existing checkAuthStatus function)
-function checkRecentRegistration() {
-  const recentRegistration = localStorage.getItem('recentRegistration');
-  const registeredEmail = localStorage.getItem('registeredEmail');
-  
-  if (recentRegistration === 'true') {
-    // Show welcome message
-    alert(`Welcome! Account created successfully for ${registeredEmail}. Please sign in.`);
-    
-    // Clear the flag
-    localStorage.removeItem('recentRegistration');
-    localStorage.removeItem('registeredEmail');
-    
-    // Auto-show auth buttons
-    const authButtons = document.getElementById("authButtons");
-    const getStartedBtn = document.getElementById("getStartedBtn");
-    getStartedBtn.style.display = 'none';
-    authButtons.style.display = 'block';
-  }
-}
+      function checkRecentRegistration() {
+        const recentRegistration = localStorage.getItem('recentRegistration');
+        const registeredEmail = localStorage.getItem('registeredEmail');
+        
+        if (recentRegistration === 'true') {
+          alert(`Welcome! Account created successfully for ${registeredEmail}. Please sign in.`);
+          
+          localStorage.removeItem('recentRegistration');
+          localStorage.removeItem('registeredEmail');
+          
+          const authButtons = document.getElementById("authButtons");
+          const getStartedBtn = document.getElementById("getStartedBtn");
+          getStartedBtn.style.display = 'none';
+          authButtons.style.display = 'block';
+        }
+      }
 
-// Call this in your DOMContentLoaded event
-document.addEventListener('DOMContentLoaded', function() {
-  checkAuthStatus();
-  checkRecentRegistration();
-});
+      document.addEventListener('DOMContentLoaded', function() {
+        checkRecentRegistration();
+      });
     });
   </script>
 

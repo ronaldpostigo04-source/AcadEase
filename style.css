@@ -189,3 +189,138 @@ footer {
     text-align: center;
   }
 }
+
+/* Mission & Vision Cards Section */
+#mission-vision {
+  background-color: #f8fafc;
+  border-radius: 15px;
+  margin-top: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+#mission-vision h2 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.mission-vision-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.mission-card, .vision-card {
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mission-card:hover, .vision-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.mission-card {
+  background: linear-gradient(145deg, #ffffff, #f0f7ff);
+  border-top: 5px solid #3498db;
+}
+
+.vision-card {
+  background: linear-gradient(145deg, #ffffff, #fff8f0);
+  border-top: 5px solid #f1c40f;
+}
+
+.mission-card h3, .vision-card h3 {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mission-card h3:before {
+  content: "🎯";
+  font-size: 1.8rem;
+}
+
+.vision-card h3:before {
+  content: "🌟";
+  font-size: 1.8rem;
+}
+
+.mission-card > p, .vision-card > p {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  flex-grow: 1;
+}
+
+.mission-list, .vision-list {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 1.2rem;
+  border-radius: 8px;
+  margin-top: auto;
+}
+
+.mission-list p, .vision-list p {
+  margin-bottom: 0.8rem;
+  color: #444;
+  display: flex;
+  align-items: flex-start;
+  font-size: 0.95rem;
+}
+
+.mission-list span {
+  color: #3498db;
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 1.1rem;
+}
+
+.vision-list span {
+  color: #f1c40f;
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 1.1rem;
+}
+
+/* Responsive Design for Mission & Vision Cards */
+@media (max-width: 768px) {
+  .mission-vision-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .mission-card, .vision-card {
+    min-height: 320px;
+    padding: 1.5rem;
+  }
+  
+  .mission-card h3, .vision-card h3 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mission-card, .vision-card {
+    min-height: 300px;
+    padding: 1.2rem;
+  }
+  
+  .mission-card h3, .vision-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  .mission-card > p, .vision-card > p {
+    font-size: 1rem;
+  }
+}
