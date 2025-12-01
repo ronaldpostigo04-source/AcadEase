@@ -50,6 +50,7 @@
       padding: 5px;
     }
 
+    /* Side Navigation with Profile */
     .side-nav {
       position: fixed;
       top: 0;
@@ -58,13 +59,99 @@
       height: 100%;
       background: #1b4332;
       color: white;
-      padding-top: 60px;
       transition: 0.3s;
       z-index: 1000;
+      display: flex;
+      flex-direction: column;
     }
 
     .side-nav.active {
       right: 0;
+    }
+
+    /* Profile Section */
+    .profile-section {
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.2);
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .profile-picture-container {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 15px;
+    }
+
+    .profile-picture {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #40916c;
+    }
+
+    .default-profile {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #40916c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      border: 3px solid #40916c;
+    }
+
+    .upload-profile-btn {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: #1b4332;
+      color: white;
+      border: 2px solid #40916c;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    .upload-profile-btn:hover {
+      background: #40916c;
+    }
+
+    .profile-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .profile-email {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      margin-bottom: 5px;
+    }
+
+    .profile-user-type {
+      font-size: 0.8rem;
+      background: #40916c;
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-top: 5px;
+    }
+
+    /* Navigation Links */
+    .nav-links {
+      flex: 1;
+      overflow-y: auto;
+      padding-top: 10px;
     }
 
     .side-nav a, .side-nav button {
@@ -85,6 +172,7 @@
       background: #40916c;
     }
 
+    /* Rest of your existing CSS remains exactly the same */
     .overlay {
       position: fixed;
       top: 0;
@@ -1384,13 +1472,31 @@
     </div>
   </header>
 
+  <!-- Side Navigation with Profile -->
   <div class="side-nav" id="sideNav">
-    <a href="#" onclick="showSection('courses')">My Courses</a>
-    <a href="#" onclick="showSection('classroom')">Classroom</a>
-    <a href="#" onclick="showSection('calendar')">Schedule</a>
-    <a href="#" onclick="showSection('activity')">Activity</a>
-    <a href="#" onclick="showSection('grades')">Grades</a>
-    <button onclick="logout()">Logout</button>
+    <!-- Profile Section -->
+    <div class="profile-section">
+      <div class="profile-picture-container">
+        <div id="profilePictureDisplay" class="default-profile">
+          <!-- Profile picture or initial will be displayed here -->
+        </div>
+        <input type="file" id="profilePictureInput" accept="image/*" style="display: none;">
+        <button class="upload-profile-btn" onclick="document.getElementById('profilePictureInput').click()">+</button>
+      </div>
+      <div class="profile-name" id="profileName">Loading...</div>
+      <div class="profile-email" id="profileEmail">user@example.com</div>
+      <div class="profile-user-type" id="profileUserType">Student</div>
+    </div>
+    
+    <!-- Navigation Links -->
+    <div class="nav-links">
+      <a href="#" onclick="showSection('courses')">My Courses</a>
+      <a href="#" onclick="showSection('classroom')">Classroom</a>
+      <a href="#" onclick="showSection('calendar')">Schedule</a>
+      <a href="#" onclick="showSection('activity')">Activity</a>
+      <a href="#" onclick="showSection('grades')">Grades</a>
+      <button onclick="logout()">Logout</button>
+    </div>
   </div>
 
   <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
@@ -1585,7 +1691,7 @@
         </div>
       </div>
       
-      <button class="toggle-professor-view" onclick="toggleProfessorView()">Toggle Professor View</button>
+      <button class="toggle-professor-view" onclick="toggleProfessorView()">Toggle View</button>
     </div>
 
     <!-- Grades Section -->
@@ -1688,7 +1794,7 @@
         
         <div class="file-upload">
           <h4>Upload Files</h4>
-          <p>Upload assignment files (PDF, DOC, WPS, TXT, etc.)</p>
+          <p>Upload assignment files (PDF, DOC, WPS, etc.)</p>
           <input type="file" id="fileInput" multiple accept=".pdf,.doc,.wps,.txt">
           <div id="filePreview" class="file-preview">
             <!-- File previews will appear here -->
@@ -1726,7 +1832,7 @@
       
       <div class="submission-section">
         <h4>Submit Your Work</h4>
-        <p>You can submit your work by providing a link to your file (Google Drive, Dropbox, etc.) or uploading a file directly.</p>
+        <p>You can submit your work by providing a link or file .</p>
         
         <div class="submission-form">
           <textarea id="submissionLink" placeholder="Paste your submission link here (Google Drive, Dropbox, etc.)"></textarea>
@@ -1794,6 +1900,63 @@
       document.getElementById("overlay").classList.toggle("active");
     }
 
+    // Load user profile from localStorage
+    function loadUserProfile() {
+      const user = JSON.parse(localStorage.getItem('currentUser')) || {
+        name: 'Guest User',
+        email: 'guest@example.com',
+        userType: 'Student'
+      };
+      
+      // Display user information
+      document.getElementById('profileName').textContent = user.name || 'Guest User';
+      document.getElementById('profileEmail').textContent = user.email || 'guest@example.com';
+      document.getElementById('profileUserType').textContent = user.userType || 'Student';
+      
+      // Display profile picture or initial
+      const profilePictureDisplay = document.getElementById('profilePictureDisplay');
+      
+      // Check if user has a profile picture in localStorage
+      const profilePicture = localStorage.getItem('userProfilePicture');
+      
+      if (profilePicture) {
+        // User has uploaded a profile picture
+        profilePictureDisplay.innerHTML = '';
+        const img = document.createElement('img');
+        img.src = profilePicture;
+        img.className = 'profile-picture';
+        img.alt = user.name;
+        profilePictureDisplay.appendChild(img);
+      } else {
+        // Show initial letter
+        const initial = user.name ? user.name.charAt(0).toUpperCase() : 'G';
+        profilePictureDisplay.innerHTML = initial;
+      }
+      
+      // Setup profile picture upload
+      document.getElementById('profilePictureInput').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            // Save to localStorage
+            localStorage.setItem('userProfilePicture', e.target.result);
+            
+            // Update display
+            profilePictureDisplay.innerHTML = '';
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'profile-picture';
+            img.alt = user.name;
+            profilePictureDisplay.appendChild(img);
+            
+            alert('Profile picture updated successfully!');
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
     // Show specific section
     function showSection(sectionName) {
       // Hide all sections
@@ -1855,20 +2018,23 @@
       
       if (classCode === correctCode) {
         // Get current user info
-        const userEmail = localStorage.getItem('userEmail') || 'student@example.com';
-        const userName = userEmail ? userEmail.split('@')[0] : 'Student';
+        const user = JSON.parse(localStorage.getItem('currentUser')) || {
+          name: 'Student',
+          email: 'student@example.com',
+          userType: 'Student'
+        };
         
         // Add user to participants list
         const participants = JSON.parse(localStorage.getItem('classParticipants')) || [];
         
         // Check if user is already in the list
-        const existingUser = participants.find(p => p.email === userEmail);
+        const existingUser = participants.find(p => p.email === user.email);
         
         if (!existingUser) {
           participants.push({
-            name: userName,
-            email: userEmail,
-            role: 'student',
+            name: user.name,
+            email: user.email,
+            role: user.userType.toLowerCase(),
             joinedAt: new Date().toISOString()
           });
           
@@ -1904,8 +2070,10 @@
       const participants = JSON.parse(localStorage.getItem('classParticipants')) || [];
       
       // Check if current user is in the participants list
-      const userEmail = localStorage.getItem('userEmail') || 'student@example.com';
-      const isJoined = participants.some(p => p.email === userEmail);
+      const user = JSON.parse(localStorage.getItem('currentUser')) || {
+        email: 'student@example.com'
+      };
+      const isJoined = participants.some(p => p.email === user.email);
       
       // Update class status
       const classStatus = document.getElementById('classStatus');
@@ -1943,12 +2111,6 @@
         
         participantsList.innerHTML = participantsHTML;
       }
-    }
-
-    // Display user email
-    function displayUserInfo() {
-      const userEmail = localStorage.getItem('userEmail') || 'student@example.com';
-      document.getElementById('userEmail').textContent = userEmail;
     }
 
     // Calendar functions
@@ -2349,9 +2511,14 @@
       
       if (activityIndex === -1) return;
       
+      // Get current user
+      const user = JSON.parse(localStorage.getItem('currentUser')) || {
+        email: 'student@example.com'
+      };
+      
       let submissionData = {
         submittedAt: new Date().toISOString(),
-        submittedBy: localStorage.getItem('userEmail') || 'student@example.com'
+        submittedBy: user.email || 'student@example.com'
       };
       
       if (submissionLink) {
@@ -2582,10 +2749,15 @@
       
       if (activityIndex === -1) return;
       
+      // Get current user
+      const user = JSON.parse(localStorage.getItem('currentUser')) || {
+        email: 'professor@example.com'
+      };
+      
       activities[activityIndex].grade = {
         score: score,
         gradedAt: new Date().toISOString(),
-        gradedBy: localStorage.getItem('userEmail') || 'professor@example.com'
+        gradedBy: user.email || 'professor@example.com'
       };
       
       localStorage.setItem('studentActivities', JSON.stringify(activities));
@@ -2665,23 +2837,20 @@
     // Logout function
     function logout() {
       localStorage.removeItem('isLoggedIn');
-      localStorage.removeItem('userEmail');
+      localStorage.removeItem('currentUser');
       window.location.href = 'login.html';
-    }
-
-    // Check login status
-    function checkLoginStatus() {
-      if (localStorage.getItem('isLoggedIn') !== 'true') {
-        // For demo purposes, we'll simulate a logged-in user
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('userEmail', 'student@example.com');
-      }
     }
 
     // Initialize dashboard
     window.onload = function() {
-      checkLoginStatus();
-      displayUserInfo();
+      // Check if user is logged in
+      if (localStorage.getItem('isLoggedIn') !== 'true') {
+        window.location.href = 'login.html';
+        return;
+      }
+      
+      // Load user profile
+      loadUserProfile();
       
       // Add sample events if none exist
       if (!localStorage.getItem('calendarEvents')) {
