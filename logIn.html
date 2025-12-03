@@ -196,11 +196,6 @@
       <div class="logo">AcadEase</div>
       <h2>Login to Your Account</h2>
       
-      <div class="demo-info">
-        <h3>📝 Demo Accounts (from Sign-up)</h3>
-        <p>Use any email/password you registered with</p>
-      </div>
-      
       <div id="message" class="message"></div>
       
       <form id="loginForm">
@@ -221,13 +216,8 @@
         </div>
       </form>
       
-      <!-- Debug Info -->
-      <div class="debug-info" id="debugInfo">
-        <strong>Debug Info:</strong><br>
-        Checking localStorage...
-      </div>
-      
-      <a href="index.html">← Back to Home</a>
+      <!-- OPTION 1: Gamitin ang absolute path -->
+      <a href="/index.html">← Back to Home</a>
       <div style="margin-top: 10px;">
         <a href="signup.html">Don't have an account? Sign up</a>
       </div>
@@ -248,22 +238,6 @@
         return result === 'test';
       } catch (e) {
         return false;
-      }
-    }
-
-    // Show stored users for debugging
-    function showStoredUsers() {
-      const users = JSON.parse(localStorage.getItem('users')) || [];
-      const debugEl = document.getElementById('debugInfo');
-      
-      if (users.length === 0) {
-        debugEl.innerHTML = '<strong>Debug Info:</strong><br>❌ No users found in storage. <a href="signup.html">Sign up first</a>';
-      } else {
-        let userList = '<strong>Stored Users (' + users.length + '):</strong><br>';
-        users.forEach(user => {
-          userList += `✓ ${user.name} (${user.email}) - ${user.userType}<br>`;
-        });
-        debugEl.innerHTML = userList;
       }
     }
 
@@ -333,8 +307,6 @@
           '❌ localStorage is not working. Please check browser settings.';
         return;
       }
-      
-      showStoredUsers();
       
       // Optional: Auto-redirect if already logged in
       // if (localStorage.getItem('isLoggedIn') === 'true') {

@@ -1489,14 +1489,16 @@
     </div>
     
     <!-- Navigation Links -->
-    <div class="nav-links">
-      <a href="#" onclick="showSection('courses')">My Courses</a>
-      <a href="#" onclick="showSection('classroom')">Classroom</a>
-      <a href="#" onclick="showSection('calendar')">Schedule</a>
-      <a href="#" onclick="showSection('activity')">Activity</a>
-      <a href="#" onclick="showSection('grades')">Grades</a>
-      <button onclick="logout()">Logout</button>
-    </div>
+ <!-- Navigation Links -->
+<div class="nav-links">
+  <a href="#" class="your-info-btn" onclick="openUserInfoModal()">Your Info</a>
+  <a href="#" onclick="showSection('courses')">My Courses</a>
+  <a href="#" onclick="showSection('classroom')">Classroom</a>
+  <a href="#" onclick="showSection('calendar')">Schedule</a>
+  <a href="#" onclick="showSection('activity')">Activity</a>
+  <a href="#" onclick="showSection('grades')">Grades</a>
+  <button onclick="logout()">Logout</button>
+</div>
   </div>
 
   <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
@@ -1717,8 +1719,8 @@
       <table class="grades-table">
         <thead>
           <tr>
-            <th>Course</th>
-            <th>Assignment</th>
+            <th>Course Subject</th>
+            <th>Title</th>
             <th>Score</th>
             <th>Total of 100%</th>
           </tr>
@@ -2898,7 +2900,7 @@
       
       if (!professorExists) {
         participants.push({
-          name: 'Prof. Jerome A Yanga',
+          name: '',
           email: 'prof.yanga@example.com',
           role: 'professor',
           joinedAt: new Date().toISOString()
@@ -2913,5 +2915,47 @@
       document.getElementById("activityDate").value = formattedDate;
     };
   </script>
+  <!-- File Viewer Modal -->
+<div class="modal" id="fileViewerModal">
+  <div class="modal-content">
+    <h3 id="fileViewerTitle">File Viewer</h3>
+    <div id="fileViewerContent">
+      <!-- File content will be loaded here -->
+    </div>
+    <div class="modal-buttons">
+      <button type="button" class="btn-secondary" onclick="closeFileViewerModal()">Close</button>
+    </div>
+  </div>
+</div>
+<!-- User Info Modal -->
+<div class="modal" id="userInfoModal">
+  <div class="modal-content user-info-modal">
+    <div class="user-info-header">
+      <h3>Your Information</h3>
+      <button class="close-info-btn" onclick="closeUserInfoModal()">✕</button>
+    </div>
+    
+    <div id="userInfoContent" class="user-info-details">
+      <!-- User info will be loaded here -->
+    </div>
+    
+    <div class="info-actions">
+      <button class="edit-info-btn" onclick="editUserInfo()">Edit Information</button>
+      <button class="close-info-btn" onclick="closeUserInfoModal()">Close</button>
+    </div>
+  </div>
+</div>
+<!-- Idagdag sa baba bago mag-close ng body -->
+<div class="modal" id="fileViewerModal">
+  <div class="modal-content">
+    <h3 id="fileViewerTitle">File Viewer</h3>
+    <div id="fileViewerContent">
+      <!-- File content will be loaded here -->
+    </div>
+    <div class="modal-buttons">
+      <button type="button" class="btn-secondary" onclick="closeFileViewerModal()">Close</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
